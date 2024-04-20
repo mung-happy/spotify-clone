@@ -1,10 +1,12 @@
+import { trackType } from "@/types/track.type";
 import SectionItem from "./SectionItem";
 
 type Props = {
   titel: string;
   url: string;
+
 };
-export default function SectionComponent({ titel }: Props) {
+export default function SectionComponent({ titel}: Props) {
   return (
     <div className="pt-3">
       <div className="flex justify-between items-center px-[22px]">
