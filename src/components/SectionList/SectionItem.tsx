@@ -3,6 +3,9 @@ type Props = {
   rounded_img?: boolean;
 };
 export default function SectionItem({ rounded_img = false }: Props) {
+  
+
+
   return (
     <div className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group">
       <div className="relative">
