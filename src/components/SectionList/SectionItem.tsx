@@ -1,5 +1,7 @@
 import { getMusic } from "@/services/Music";
 import { trackType } from "@/types/track.type";
+import Link from "next/link";
+
 import { IoIosPlay } from "react-icons/io";
 type Props = {
   rounded_img?: boolean;
@@ -11,7 +13,8 @@ export default async function SectionItem({ rounded_img = false}: Props) {
   return (
     <div className="grid grid-cols-4">
     {musics.map((tracks)=>(
-         <div key={tracks._id} className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group">
+          <Link href={`playlist/[]`}>
+      <div key={tracks._id} className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group">
         <div className="relative">
         <img
           className={`${
@@ -33,6 +36,7 @@ export default async function SectionItem({ rounded_img = false}: Props) {
         {tracks.artists.name}
       </div>
     </div> 
+          </Link>
 
     ))}
     

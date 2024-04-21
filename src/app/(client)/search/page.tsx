@@ -1,4 +1,11 @@
-export default function SearchPage() {
+
+import { getGenres } from "@/services/Genres";
+import { genresType } from "@/types/genres.type";
+type Props ={
+ 
+}
+export default async function SearchPage({}) {
+  const genres:genresType[] = await getGenres()
   return (
     <section className="w-full bg-zinc-900 p-2">
       <div className="bg-zinc-900 p-4 rounded-md">
@@ -67,146 +74,24 @@ export default function SearchPage() {
             Browse all
           </h2>
           <div className="w-full grid grid-cols-5 gap-6">
-            {/* <div className="max-w-40 h-40 overflow-hidden bg-pink-700 rounded-lg ">
-              <div className="absolute">
-                <h2 className="text-2xl font-bold text-white w-full mb-4">
-                  MUSIC
-                </h2>
-              </div>
-              <div className="relative w-max origin-bottom-right">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="h-28  rigin-bottom-right absolute bottom-[-178px] right-[-12px] -skew-x-12 skew-y-12"
-                />
-              </div>
-            </div> */}
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
+          {genres.map((gen)=>(
+          <div key={gen._id} className={`w-full pt-[100%] relative overflow-hidden rounded-lg`} style={{backgroundColor:`${gen.display.bg_color}`}}>
               <div className="p-2 absolute top-0 z-10">
                 <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
+                  {gen.name}
                 </h2>
               </div>
               <div className="absolute -bottom-0 -right-5 rotate-12">
                 <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
+                  src={gen.display.image}
                   alt="Song Thumbnail"
                   className="w-[100px]"
                 />
               </div>
             </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
-            <div className="w-full pt-[100%] relative overflow-hidden bg-blue-900 rounded-lg ">
-              <div className="p-2 absolute top-0 z-10">
-                <h2 className="text-2xl font-bold  text-white w-full mb-4">
-                  Made For You
-                </h2>
-              </div>
-              <div className="absolute -bottom-0 -right-5 rotate-12">
-                <img
-                  src="https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb"
-                  alt="Song Thumbnail"
-                  className="w-[100px]"
-                />
-              </div>
-            </div>
+
+          ))}
+      
             {/* Add more search results here */}
           </div>
         </div>
