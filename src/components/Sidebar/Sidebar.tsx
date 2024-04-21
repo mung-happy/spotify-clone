@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaPlus } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
@@ -17,19 +18,19 @@ export default function Sidebar() {
         />
         <ul className="pt-3">
           <li>
-            <a className="font-bold text-white" href="#">
+            <Link className="font-bold text-white" href="/">
               <button className="flex items-center gap-5 h-10 px-3 py-1">
                 <GoHomeFill className="w-6 h-6" />
                 Trang chủ
               </button>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="font-bold text-white" href="#">
+            <Link className="font-bold text-white" href="/search">
               <button className="flex items-center gap-5 text-icon-color h-10 px-3 py-1">
                 <HiMiniMagnifyingGlass className="w-6 h-6" /> Tìm kiếm
               </button>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

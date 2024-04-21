@@ -9,12 +9,12 @@ export default function ClientLayout({
 }>) {
   return (
     <div className="bg-black px-2 pt-2">
-      <div className="flex gap-2">
+      <div className="flex gap-2 container">
         {/* side bar */}
         <Sidebar />
 
         {/* Content */}
-        <section className="w-full rounded-lg relative overflow-y-scroll flex-grow max-h-[calc(100vh-80px)] min-h-[520px]">
+        <section className="w-full rounded-lg relative overflow-y-scroll flex-grow max-h-[calc(100vh-80px)] min-h-[500px]">
           {/* header */}
           <Header />
 
