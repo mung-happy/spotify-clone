@@ -89,6 +89,9 @@ export default function ArtistPage() {
           </div>
         </div>
       </div>
+      <audio src="https://ia600304.us.archive.org/12/items/test-1_2003/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17.mp3">
+        ngjdfngnj
+      </audio>
       <div className="bg-sub-background/20 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6 text-4xl">
