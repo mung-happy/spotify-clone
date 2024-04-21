@@ -1,13 +1,13 @@
 import { getMusic } from "@/services/Music";
 import { trackType } from "@/types/track.type";
-import { useEffect } from "react";
 import { IoIosPlay } from "react-icons/io";
 type Props = {
   rounded_img?: boolean;
 };
 export default async function SectionItem({ rounded_img = false}: Props) {
-
+  
   const musics:trackType[] = await getMusic()
+
   return (
     <div className="grid grid-cols-4">
     {musics.map((tracks)=>(

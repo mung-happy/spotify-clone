@@ -1,7 +1,6 @@
-// Trong một trang hoặc component của bạn
-export async function getMusic() {
+export async function getGenres() {
     try {
-      const response = await fetch(`https://spotify-be.vercel.app/track`);
+      const response = await fetch(`https://spotify-be.vercel.app/genres`);
       const data =await response.json();
       return data
       // return response.json();
@@ -9,15 +8,13 @@ export async function getMusic() {
       console.error('Lỗi khi gọi API:', error);
     }
   }
-  export async function getMusicId(pid:string) {
+  export async function getGenresById(pid:string) {
     try {
-      const response = await fetch(`https://spotify-be.vercel.app/track/${pid}`);
+      const response = await fetch(`https://spotify-be.vercel.app/genres/${pid}`);
       const data =await response.json();
-      console.log(data);
       return data
       // return response.json();
     } catch (error) {
       console.error('Lỗi khi gọi API:', error);
     }
   }
-  
