@@ -7,6 +7,7 @@ export interface artistType {
     genres:genresType[]
     images:string
     popularity:number
+    banner?:string
 }
 
 type follower = {
