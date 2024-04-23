@@ -8,5 +8,4 @@ export interface albumTye {
     image:string
     name:string
     artists:artistType
-    
 }

@@ -1,12 +1,15 @@
 import { trackType } from "@/types/track.type";
 import SectionItem from "./SectionItem";
+import { getMusic } from "@/services/Music";
 
 type Props = {
   titel: string;
+  tracks:trackType[]
   url: string;
-
+  
 };
-export default function SectionComponent({ titel}: Props) {
+export default async function SectionComponent({ titel,tracks}: Props) {
+  const musics:trackType[] = await getMusic()
   return (
     <div className="pt-3">
       <div className="flex justify-between items-center px-[22px]">
@@ -16,7 +19,9 @@ export default function SectionComponent({ titel}: Props) {
         </a>
       </div>
       <div className="px-3">
-        <SectionItem />
+      {musics.map((tracks)=>(
+        <SectionItem  tracks={tracks}/>
+      ))}
       </div>
     </div>
   );

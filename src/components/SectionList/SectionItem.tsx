@@ -5,14 +5,13 @@ import Link from "next/link";
 import { IoIosPlay } from "react-icons/io";
 type Props = {
   rounded_img?: boolean;
+  tracks:trackType
 };
-export default async function SectionItem({ rounded_img = false}: Props) {
+export default async function SectionItem({ rounded_img = false,tracks}: Props) {
   
-  const musics:trackType[] = await getMusic()
 
   return (
     <div className="grid grid-cols-4">
-    {musics.map((tracks)=>(
           <Link href={`trackId/${tracks._id}`}>
       <div key={tracks._id} className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group">
         <div className="relative">
@@ -37,9 +36,6 @@ export default async function SectionItem({ rounded_img = false}: Props) {
       </div>
     </div> 
           </Link>
-
-    ))}
-    
     </div>
   );
 }

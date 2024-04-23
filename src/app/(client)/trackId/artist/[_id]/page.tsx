@@ -4,6 +4,7 @@ import { IoIosAddCircleOutline, IoIosPause } from "react-icons/io";
 import { BsThreeDots, BsDot } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
 import { IoTimeOutline, IoPlaySharp } from "react-icons/io5";
+import { PiSealCheckFill } from "react-icons/pi";
 import {
   Table,
   TableBody,
@@ -16,40 +17,50 @@ import {
 } from "@/components/ui/table";
 
 import { trackType } from "@/types/track.type";
-import { getMusic, getMusicId } from "@/services/Music";
+import { getMusic} from "@/services/Music";
 import Link from "next/link";
+import { artistType } from "@/types/artists.type";
+import { getArtistId } from "@/services/Artists";
+import SectionItem from "@/components/SectionList/SectionItem";
 export default async function PageId ({params}:{params :{_id:string}}) {    
   const musics:trackType[] = await getMusic()
-  const musicId:trackType = await getMusicId(params._id as string)
+  const artistId:artistType = await getArtistId(params._id as string)
+  const formatNumber = (number: { toString: () => string; }) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
     return (
-      <div className="bg-gradient-to-b  to-[500px] to-base-background" >
-        <div className="py-10 px-5 flex gap-3 items-end bg- " style={{backgroundColor:`${musicId.color_bg}`,backgroundImage:`linear-gradient(to bottom,${musicId.color_bg},#000000)`}}>
-          <div>
+      <div className="bg-gradient-to-b  to-[500px] to-base-background">
+        <div className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-60 bg-black" style={{backgroundImage:`url(${artistId.banner})`}}>
+          {/* <div>
             <img
               className="w-[226px] h-[226px]"
-              src={musicId.image}
+              src={artistId.images}
               alt=""
             />
-          </div>
+          </div> */}
           <div>
-            <span className="mb-2 font-bold text-white">Bài hát</span>
-            <h1 className="text-white font-bold text-5xl py-3">{musicId.name}</h1>
+            <div className="flex items-center">
+            <PiSealCheckFill className="text-blue-500 text-2xl"/>
+            <span className=" font-medium text-white">Nghệ sĩ được xác minh</span>
+            </div>
+            <h1 className="text-white  text-7xl py-3 font-black">{artistId.name}</h1>
+            <span className="mb-2 font-semibold text-white">{formatNumber(`${artistId.followers.total}`)} người theo dõi hàng tháng</span>
             {/* <div className="text-sm my-1">
               <span className="text-2xl font-normal">{musicId.artists.name}</span>
             </div> */}
-            <div className="flex items-center">
-              <img className="w-10 rounded-full" src={musicId.artists.images} alt="" />
+            {/* <div className="flex items-center">
+              <img className="w-10 rounded-full" alt="" />
               <span>
-                <Link href={`artist/${musicId.artists._id}`} className="font-bold hover:underline ">
+                <a href="" className="font-bold hover:underline ">
                   {musicId.artists.name}
-                </Link>
+                </a>
               </span>
               <BsDot />
               <span className="font-medium">
                 <span className="text-white">{musicId.popularity}k lượt theo dõi</span>
                 <span className="text-base-text"> . 3:54</span>
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -60,30 +71,34 @@ export default async function PageId ({params}:{params :{_id:string}}) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6 text-4xl">
               <PlayPauseMusic />
-              <IoIosAddCircleOutline className="text-base-text hover:text-white hover:scale-105" />
+              {/* <IoIosAddCircleOutline className="text-base-text hover:text-white hover:scale-105" /> */}
+              <Link href={''} className="text-sm font-bold border border-gray-100 border-solid rounded-full w-24 p-1 text-center hover:text-white hover:scale-105">Theo dõi</Link>
               <BsThreeDots className="text-base-text hover:text-white hover:scale-105" />
             </div>
-            <div>
+            {/* <div>
               <span className="flex items-center gap-3 text-icon-color hover:text-white">
                 Danh sách
                 <span>
                   <FaListUl />
                 </span>
               </span>
-            </div>
+            </div> */}
+          </div>
+          <div className="font-bold mt-3 text-3xl mb-8">
+            <h1>Phổ biến</h1>
           </div>
           <Table>
             <TableHeader>
-              <TableHead className="w-5">#</TableHead>
+              {/* <TableHead className="w-5"></TableHead>
               <TableHead>Tiêu đề</TableHead>
               <TableHead>Album</TableHead>
               <TableHead className="w-[100px]">
                 <IoTimeOutline className="mx-auto" />
-              </TableHead>
-              <TableRow></TableRow>
+              </TableHead> */}
+              {/* <TableRow></TableRow> */}
             </TableHeader>
             <TableBody>
-              {musics.map((invoice,index) => (
+              {artistId.tracks?.map((invoice,index) => (
                 <TableRow
                   key={invoice._id}
                   className="border-none hover:bg-base-text group text-base-text "
@@ -112,7 +127,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                   </TableCell>
                   <TableCell className="p-2">
                     <div className="flex items-center">
-                    <Link href={`${invoice._id}`}>
+                    <Link href={`/trackId/${invoice._id}`}>
                       <img
                         className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
                         src={invoice.image}
@@ -120,12 +135,12 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                         </Link>
                       <div className="ml-4 font-semibold">
                         <div className="text-[14px] text-white hover:underline cursor-pointer">
-                        <Link href={`${invoice._id}`} className="hover:underline group-hover:text-white">
+                        <Link href={`/trackId/${invoice._id}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                         </div>
                         <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                          <Link href={`artist/${invoice.artists._id}`}>
+                          <Link href={`${invoice.artists._id}`}>
                           {invoice.artists.name}
                           </Link>
                         </div>
@@ -133,7 +148,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                     </div>
                   </TableCell>
                   <TableCell className="p-2">
-                    <Link href={`${invoice._id}`} className="hover:underline group-hover:text-white">
+                    <Link href={`trackId/${invoice._id}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                   </TableCell>
@@ -144,6 +159,11 @@ export default async function PageId ({params}:{params :{_id:string}}) {
               ))}
             </TableBody>
           </Table>
+        </div>
+        <div>
+     {/* {artistId.album.map((album)=>(
+        <SectionItem tracks={album}/>
+     ))} */}
         </div>
       </div>
     );

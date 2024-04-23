@@ -1,4 +1,6 @@
+import { albumTye } from "./album.type";
 import { genresType } from "./genres.type";
+import { trackType } from "./track.type";
 
 export interface artistType {
     _id: string;
@@ -7,10 +9,12 @@ export interface artistType {
     genres:genresType[]
     images:string
     popularity:number
-    banner?:string
+    banner?:string,
+    tracks?:trackType[]
+    album:albumTye[]
 }
 
 type follower = {
-    href: string;
-    totle:number
+    href: string
+    total:number
 }

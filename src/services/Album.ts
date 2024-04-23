@@ -1,6 +1,6 @@
-export async function getArtist() {
+export async function getAlbum() {
     try {
-      const response = await fetch(`https://spotify-be.vercel.app/artist`,{
+      const response = await fetch(`https://spotify-be.vercel.app/album`,{
         next: { revalidate: 20 },
       });
       const data =await response.json();
@@ -12,9 +12,9 @@ export async function getArtist() {
       console.error('Lỗi khi gọi API:', error);
     }
   }
-    export async function getArtistId(pid:string) {
+    export async function getAlbumId(pid:string) {
       try {
-        const response = await fetch(`https://spotify-be.vercel.app/artist/${pid}`,{
+        const response = await fetch(`https://spotify-be.vercel.app/album/${pid}`,{
           next: { revalidate: 20 },
         });
         const data =await response.json();
