@@ -1,11 +1,12 @@
 import { artistType } from "./artists.type"
 import { trackType } from "./track.type"
 
-export interface albumTye {
+export interface albumType {
     _id: string
     total_tracks:number
     tracks:trackType[]
     image:string
     name:string
-    artists:artistType
+    artists:artistType,
+    color_bg?:string
 }

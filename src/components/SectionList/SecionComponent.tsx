@@ -4,11 +4,10 @@ import { getMusic } from "@/services/Music";
 
 type Props = {
   titel: string;
-  tracks:trackType[]
   url: string;
   
 };
-export default async function SectionComponent({ titel,tracks}: Props) {
+export default async function SectionComponent({ titel}: Props) {
   const musics:trackType[] = await getMusic()
   return (
     <div className="pt-3">
@@ -18,7 +17,7 @@ export default async function SectionComponent({ titel,tracks}: Props) {
           Hiện tất cả
         </a>
       </div>
-      <div className="px-3">
+      <div className="px-3 grid grid-cols-4">
       {musics.map((tracks)=>(
         <SectionItem  tracks={tracks}/>
       ))}
