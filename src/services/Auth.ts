@@ -1,11 +1,11 @@
 import https from "@/lib/configHttp";
-import { FormRegister, IsLogin } from "@/types/auth.type";
+import { FormRegister, IsLogin, authResponse } from "@/types/auth.type";
 
 export async function Register(data:FormRegister) {
-   return https.post("/auth/signup",data)
+   return https.post<authResponse>("/auth/signup",data)
   }
   export async function Login(data:IsLogin) {
-    return https.post("/auth/signin",data)
+    return https.post<authResponse>("/auth/signin",data)
    }
   
 export async function requestNextServerAuth(token:string) {

@@ -11,7 +11,7 @@ export class HttpError extends Error {
     }
   }
   export const isClient = () => typeof window !== 'undefined'
-const request = async (method:"GET"|"POST"|"PUT"|"DELETE",endpoint:string,body?:any)=>{
+const request = async <Response>(method:"GET"|"POST"|"PUT"|"DELETE",endpoint:string,body?:any)=>{
     const baseHeaders:{ [key: string]: string} = {"Content-Type": "application/json"}
     if (isClient()) {
         const dataLocal = localStorage.getItem('user')
@@ -27,7 +27,7 @@ const request = async (method:"GET"|"POST"|"PUT"|"DELETE",endpoint:string,body?:
         body: body ? JSON.stringify(body): undefined,
         method
     })
-    const payload = await res.json()
+    const payload:Response = await res.json()
     const data = {
         status: res.status,
         payload
@@ -40,14 +40,14 @@ const request = async (method:"GET"|"POST"|"PUT"|"DELETE",endpoint:string,body?:
 }
 
 const https = {
-    get(endpoint:string) {
-        return request("GET",endpoint)
+    get<Response>(endpoint:string) {
+        return request<Response>("GET",endpoint)
     },
-    post(endpoint:string,data:any){
-        return request("POST",endpoint,data)
+    post<Response>(endpoint:string,data:any){
+        return request<Response>("POST",endpoint,data)
     },
-    put(endpoint:string,data:any){
-        return request("PUT",endpoint,data)
+    put<Response>(endpoint:string,data:any){
+        return request<Response>("PUT",endpoint,data)
     },
     delete(endpoint:string){
         return request("DELETE",endpoint)
