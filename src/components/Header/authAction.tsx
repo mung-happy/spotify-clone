@@ -1,5 +1,10 @@
 "use client";
 import Link from "next/link";
+
+if (typeof window !== "undefined") {
+  const datalocal = localStorage.getItem("user");
+  console.log(datalocal);
+}
 export default function AuthAction() {
   return (
     <div className="flex items-center ml-6">

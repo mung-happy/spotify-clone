@@ -1,8 +1,9 @@
 import https from "@/lib/configHttp";
+import { trackType } from "@/types/track.type";
 
 // Trong một trang hoặc component của bạn
 export async function getMusic() {
-   return https.get("track")
+   return https.get<trackType[]>("track")
   }
   export async function getMusicId(pid:string) {
     try {
