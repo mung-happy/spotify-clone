@@ -9,4 +9,6 @@ export interface albumType {
     name:string
     artists:artistType,
     color_bg?:string
+    type:string
+    slug:string
 }

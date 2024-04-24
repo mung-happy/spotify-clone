@@ -12,6 +12,8 @@ export interface artistType {
     banner?:string,
     tracks?:trackType[]
     album:albumType[]
+    type:string
+    slug:string
 }
 
 type follower = {

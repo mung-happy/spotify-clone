@@ -10,5 +10,7 @@ export interface trackType {
     name:string
     popularity:number
     color_bg?:string
+    type:string
+    slug:string
 }
 
