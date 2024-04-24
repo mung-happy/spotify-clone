@@ -18,32 +18,30 @@ import {
 
 import Link from "next/link";
 import { getAlbumId } from "@/services/Album";
-import { albumType } from "@/types/album.type";
 export default async function PageId({ params }: { params: { _id: string } }) {
-    const album: albumType = await getAlbumId(params._id as string)
-
+    const album = await getAlbumId(params._id as string)
     return (
-        <div className="bg-gradient-to-b to-[400px] to-base-background" style={{ backgroundColor: `${album.color_bg}`, backgroundImage: `linear-gradient(to bottom,${album.color_bg},#000000)`}}>
+        <div className="bg-gradient-to-b to-[400px] to-base-background" style={{ backgroundColor: `${album.payload.color_bg}`, backgroundImage: `linear-gradient(to bottom,${album.payload.color_bg},#000000)`}}>
 
             <div className="py-10 px-5 flex gap-3 items-end" >
                 <div>
                     <img
                         className="w-[150px] h-[150px] mt-10 rounded"
-                        src={album.image}
+                        src={album.payload.image}
                         alt=""
                     />
                 </div>
                 <div>
                     <span className="mb-2 font-bold text-white">Album</span>
-                    <h1 className="text-white font-bold text-5xl py-3">{album.name}</h1>
+                    <h1 className="text-white font-bold text-5xl py-3">{album.payload.name}</h1>
                     {/* <div className="text-sm my-1">
               <span className="text-2xl font-normal">{album.artists.name}</span>
             </div> */}
                     <div className="flex items-center">
-                        <img className="w-8 rounded-full" src={album.artists.images} alt="" />
+                        <img className="w-8 rounded-full" src={album.payload.artists.images} alt="" />
                         <span>
-                            <Link href={`artist/${album.artists._id}`} className="font-bold hover:underline ">
-                                {album.artists.name}
+                            <Link href={`/artist/${album.payload.artists._id}`} className="font-bold hover:underline ">
+                                {album.payload.artists.name}
                             </Link>
                         </span>
                         <BsDot />
@@ -86,7 +84,7 @@ export default async function PageId({ params }: { params: { _id: string } }) {
                         <TableRow></TableRow>
                     </TableHeader>
                     <TableBody>
-                        {album.tracks.map((invoice, index) => (
+                        {album.payload.tracks.map((invoice, index) => (
                             <TableRow
                                 key={invoice._id}
                                 className="border-none hover:bg-base-text group text-base-text "

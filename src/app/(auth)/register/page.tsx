@@ -1,3 +1,6 @@
+import FomrRegister from "@/components/FormRegister/FormRegister";
+import Link from "next/link";
+
 export default function RegisterPage() {
   return (
     <div className="bg-base-background py-5">
@@ -15,17 +18,7 @@ export default function RegisterPage() {
             Đăng kí để bắt đầu nghe
           </h1>
           {/* Form Regiseter */}
-          <form className="text-white">
-            <label className="font-bold">Địa chỉ email</label>
-            <input
-              type="text"
-              placeholder="name@domain.com"
-              className="mt-2 w-full h-12 outline-none border border-[#878787] rounded-md bg-transparent py-3 px-4"
-            />
-            <button className="w-full h-12 rounded-full bg-[#1ed760] text-black mt-5 font-bold">
-              Tiếp theo
-            </button>
-          </form>
+          <FomrRegister />
           <div className="my-8 relative">
             <hr />
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-2 bg-base-background text-white font-bold">
@@ -50,7 +43,9 @@ export default function RegisterPage() {
           {/* Navigate to Lgoin */}
           <div className="my-8 text-icon-color text-center">
             <span>Bạn đã có tài khoản?</span>
-            <a className="underline text-white">Đăng nhập tại đây</a>
+            <Link href={"/login"} className="underline text-white">
+              Đăng nhập tại đây
+            </Link>
           </div>
         </div>
       </div>

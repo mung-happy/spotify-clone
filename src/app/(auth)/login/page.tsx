@@ -1,3 +1,6 @@
+import FormLogin from "@/components/FormLogin/FormLogin";
+import Link from "next/link";
+
 export default function LoginPage() {
   return (
     <div>
@@ -34,27 +37,7 @@ export default function LoginPage() {
               <hr />
             </div>
             {/* Form Login */}
-            <form className="text-white">
-              <div>
-                <label className="font-bold">Địa chỉ email</label>
-                <input
-                  type="text"
-                  placeholder="Địa chỉ email"
-                  className="mt-2 w-full h-12 outline-none border border-[#878787] rounded-md bg-transparent py-3 px-4"
-                />
-              </div>
-              <div className="mt-3">
-                <label className="font-bold">Mật khẩu</label>
-                <input
-                  type="password"
-                  placeholder="Mật khẩu"
-                  className="mt-2 w-full h-12 outline-none border border-[#878787] rounded-md bg-transparent py-3 px-4"
-                />
-              </div>
-              <button className="w-full h-12 rounded-full bg-[#1ed760] text-black mt-5 font-bold">
-                Đăng nhập
-              </button>
-            </form>
+            <FormLogin />
             {/* Forgot password */}
             <div className="text-white mt-6 text-center">
               <a className="underline">Quên mật khẩu của bạn?</a>
@@ -66,7 +49,9 @@ export default function LoginPage() {
             <div className="my-8 text-icon-color text-center">
               <span>
                 Chưa có tài khoản?{" "}
-                <a className="underline text-white">Đăng kí Spotify</a>
+                <Link href={"/register"} className="underline text-white">
+                  Đăng kí Spotify
+                </Link>
               </span>
             </div>
           </div>

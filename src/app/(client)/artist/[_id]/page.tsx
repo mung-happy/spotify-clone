@@ -21,16 +21,17 @@ import { getMusic} from "@/services/Music";
 import Link from "next/link";
 import { artistType } from "@/types/artists.type";
 import { getArtistId } from "@/services/Artists";
+import { getAlbumId } from "@/services/Album";
 import SectionItem from "@/components/SectionList/SectionItem";
 export default async function PageId ({params}:{params :{_id:string}}) {    
-  const musics:trackType[] = await getMusic()
-  const artistId:artistType = await getArtistId(params._id as string)
+  const artistId = await getArtistId(params._id as string)
   const formatNumber = (number: { toString: () => string; }) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
     return (
-      <div className="bg-gradient-to-b  to-[500px] to-base-background">
-        <div className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-60 bg-black" style={{backgroundImage:`url(${artistId.banner})`}}>
+      <div className="bg-gradient-to-b  to-[500px] to-base-background" style={{backgroundColor:`backgroundColor:'rgb(88, 80, 80)'`,backgroundImage:`linear-gradient(to bottom,backgroundColor:'rgb(88, 80, 80)',#000000)`}}>
+        <div className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-60 bg-black" style={{backgroundImage:`url(${artistId.payload.banner})`}}>
           {/* <div>
             <img
               className="w-[226px] h-[226px]"
@@ -43,8 +44,8 @@ export default async function PageId ({params}:{params :{_id:string}}) {
             <PiSealCheckFill className="text-blue-500 text-2xl"/>
             <span className=" font-medium text-white">Nghệ sĩ được xác minh</span>
             </div>
-            <h1 className="text-white  text-7xl py-3 font-black">{artistId.name}</h1>
-            <span className="mb-2 font-semibold text-white">{formatNumber(`${artistId.followers.total}`)} người theo dõi hàng tháng</span>
+            <h1 className="text-white  text-7xl py-3 font-black">{artistId.payload.name}</h1>
+            <span className="mb-2 font-semibold text-white">{formatNumber(`${artistId.payload.followers.total}`)} người theo dõi hàng tháng</span>
             {/* <div className="text-sm my-1">
               <span className="text-2xl font-normal">{musicId.artists.name}</span>
             </div> */}
@@ -98,7 +99,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
               {/* <TableRow></TableRow> */}
             </TableHeader>
             <TableBody>
-              {artistId.tracks?.map((invoice,index) => (
+              {artistId.payload.tracks?.map((invoice,index) => (
                 <TableRow
                   key={invoice._id}
                   className="border-none hover:bg-base-text group text-base-text "
@@ -127,7 +128,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                   </TableCell>
                   <TableCell className="p-2">
                     <div className="flex items-center">
-                    <Link href={`/trackId/${invoice._id}`}>
+                    <Link href={`/track/${invoice._id}`}>
                       <img
                         className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
                         src={invoice.image}
@@ -135,7 +136,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                         </Link>
                       <div className="ml-4 font-semibold">
                         <div className="text-[14px] text-white hover:underline cursor-pointer">
-                        <Link href={`/trackId/${invoice._id}`} className="hover:underline group-hover:text-white">
+                        <Link href={`/track/${invoice._id}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                         </div>
@@ -148,7 +149,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                     </div>
                   </TableCell>
                   <TableCell className="p-2">
-                    <Link href={`trackId/${invoice._id}`} className="hover:underline group-hover:text-white">
+                    <Link href={`track/${invoice._id}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                   </TableCell>
@@ -160,10 +161,13 @@ export default async function PageId ({params}:{params :{_id:string}}) {
             </TableBody>
           </Table>
         </div>
-        <div>
-     {/* {artistId.album.map((album)=>(
-        <SectionItem tracks={album}/>
-     ))} */}
+        <div className="p-3">
+          <h2 className="font-semibold p-3 text-3xl">Album</h2>
+        <div className="grid grid-cols-4">
+     {artistId.payload.album.map((album)=>(
+        <SectionItem data={album}/>
+     ))}
+        </div>
         </div>
       </div>
     );

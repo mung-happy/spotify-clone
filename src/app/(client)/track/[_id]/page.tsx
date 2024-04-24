@@ -1,4 +1,3 @@
-
 import PlayPauseMusic from "@/components/PlayPauseButton/PlayPauseMusic";
 import { IoIosAddCircleOutline, IoIosPause } from "react-icons/io";
 import { BsThreeDots, BsDot } from "react-icons/bs";
@@ -19,34 +18,34 @@ import { trackType } from "@/types/track.type";
 import { getMusic, getMusicId } from "@/services/Music";
 import Link from "next/link";
 export default async function PageId ({params}:{params :{_id:string}}) {    
-  const musics:trackType[] = await getMusic()
-  const musicId:trackType = await getMusicId(params._id as string)
+  const musics = await getMusic()
+  const musicId = await getMusicId(params._id as string)
     return (
       <div className="bg-gradient-to-b  to-[500px] to-base-background" >
-        <div className="py-10 px-5 flex gap-3 items-end bg- " style={{backgroundColor:`${musicId.color_bg}`,backgroundImage:`linear-gradient(to bottom,${musicId.color_bg},#000000)`}}>
+        <div className="py-10 px-5 flex gap-3 items-end bg- " style={{backgroundColor:`${musicId.payload.color_bg}`,backgroundImage:`linear-gradient(to bottom,${musicId.payload.color_bg},#000000)`}}>
           <div>
             <img
               className="w-[226px] h-[226px]"
-              src={musicId.image}
+              src={musicId.payload.image}
               alt=""
             />
           </div>
           <div>
             <span className="mb-2 font-bold text-white">Bài hát</span>
-            <h1 className="text-white font-bold text-5xl py-3">{musicId.name}</h1>
+            <h1 className="text-white font-bold text-5xl py-3">{musicId.payload.name}</h1>
             {/* <div className="text-sm my-1">
               <span className="text-2xl font-normal">{musicId.artists.name}</span>
             </div> */}
             <div className="flex items-center">
-              <img className="w-10 rounded-full" src={musicId.artists.images} alt="" />
+              <img className="w-10 rounded-full" src={musicId.payload.artists.images} alt="" />
               <span>
-                <Link href={`artist/${musicId.artists._id}`} className="font-bold hover:underline ">
-                  {musicId.artists.name}
+                <Link href={`/artist/${musicId.payload.artists._id}`} className="font-bold hover:underline ">
+                  {musicId.payload.artists.name}
                 </Link>
               </span>
               <BsDot />
               <span className="font-medium">
-                <span className="text-white">{musicId.popularity}k lượt theo dõi</span>
+                <span className="text-white">{musicId.payload.popularity}k lượt theo dõi</span>
                 <span className="text-base-text"> . 3:54</span>
               </span>
             </div>
@@ -83,7 +82,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
               <TableRow></TableRow>
             </TableHeader>
             <TableBody>
-              {musics.map((invoice,index) => (
+              {musics.payload.map((invoice,index) => (
                 <TableRow
                   key={invoice._id}
                   className="border-none hover:bg-base-text group text-base-text "
@@ -125,7 +124,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                     </Link>
                         </div>
                         <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                          <Link href={`artist/${invoice.artists._id}`}>
+                          <Link href={`/artist/${invoice.artists._id}`}>
                           {invoice.artists.name}
                           </Link>
                         </div>

@@ -5,7 +5,7 @@ type Props ={
  
 }
 export default async function SearchPage({}) {
-  const genres:genresType[] = await getGenres()
+  const genres = await getGenres()
   return (
     <section className="w-full bg-zinc-900 p-2">
       <div className="bg-zinc-900 p-4 rounded-md">
@@ -74,7 +74,7 @@ export default async function SearchPage({}) {
             Browse all
           </h2>
           <div className="w-full grid grid-cols-5 gap-6">
-          {genres.map((gen)=>(
+          {genres.payload.map((gen)=>(
           <div key={gen._id} className={`w-full pt-[100%] relative overflow-hidden rounded-lg`} style={{backgroundColor:`${gen.display.bg_color}`}}>
               <div className="p-2 absolute top-0 z-10">
                 <h2 className="text-2xl font-bold  text-white w-full mb-4">
