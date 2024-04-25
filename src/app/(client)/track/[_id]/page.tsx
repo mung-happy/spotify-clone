@@ -37,9 +37,9 @@ export default async function PageId ({params}:{params :{_id:string}}) {
               <span className="text-2xl font-normal">{musicId.artists.name}</span>
             </div> */}
             <div className="flex items-center">
-              <img className="w-10 rounded-full" src={musicId.payload.artists.images} alt="" />
+              <img className="w-10 rounded-full" src={musicId.payload.artists.image} alt="" />
               <span>
-                <Link href={`/artist/${musicId.payload.artists._id}`} className="font-bold hover:underline ">
+                <Link href={`/artist/${musicId.payload.artists.slug}`} className="font-bold hover:underline ">
                   {musicId.payload.artists.name}
                 </Link>
               </span>
@@ -111,7 +111,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                   </TableCell>
                   <TableCell className="p-2">
                     <div className="flex items-center">
-                    <Link href={`${invoice._id}`}>
+                    <Link href={`${invoice.slug}`}>
                       <img
                         className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
                         src={invoice.image}
@@ -119,12 +119,12 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                         </Link>
                       <div className="ml-4 font-semibold">
                         <div className="text-[14px] text-white hover:underline cursor-pointer">
-                        <Link href={`${invoice._id}`} className="hover:underline group-hover:text-white">
+                        <Link href={`${invoice.slug}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                         </div>
                         <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                          <Link href={`/artist/${invoice.artists._id}`}>
+                          <Link href={`/artist/${invoice.artists.slug}`}>
                           {invoice.artists.name}
                           </Link>
                         </div>
@@ -132,7 +132,7 @@ export default async function PageId ({params}:{params :{_id:string}}) {
                     </div>
                   </TableCell>
                   <TableCell className="p-2">
-                    <Link href={`${invoice._id}`} className="hover:underline group-hover:text-white">
+                    <Link href={`${invoice.slug}`} className="hover:underline group-hover:text-white">
                       {invoice.name}
                     </Link>
                   </TableCell>

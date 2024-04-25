@@ -22,10 +22,10 @@ const request = async <Response>(method:"GET"|"POST"|"PUT"|"DELETE",endpoint:str
       }
     const fullUrl = endpoint.startsWith("/") ? `${API}${endpoint}` : `${API}/${endpoint}`
     const res = await fetch(fullUrl,{
-        headers:{
-        },
+        headers:baseHeaders,
         body: body ? JSON.stringify(body): undefined,
-        method
+        method,
+        next: { revalidate: 60 }
     })
     const payload:Response = await res.json()
     const data = {

@@ -11,9 +11,9 @@ export default async function SectionItem({ rounded_img = false,data }: Props) {
 
   return (
     <div className=" gap-2">
-        <Link href={`/${data.type}/${data._id}`}>
+        <Link href={`/${data.type}/${data.slug}`}>
         <div
-          key={data._id}
+          key={data.slug}
           className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group"
         >
           <div className="relative">
@@ -33,8 +33,11 @@ export default async function SectionItem({ rounded_img = false,data }: Props) {
           <div className="text-white pt-4 font-semibold text-[17px] text-nowrap text-ellipsis truncate text-container w-48 overflow-hidden whitespace-nowrap">
             {data.name}
           </div>
+          <div className="text-gray-400 pt-1 text-[14px]">
+            {data.type}
+          </div>
           <div className="text-gray-400 pt-1 pb-3 text-[14px]">
-            {data.artists.name}
+            {data.artists?.name}
           </div>
         </div>
         </Link>
