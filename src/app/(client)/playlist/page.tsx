@@ -13,51 +13,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-export default function ArtistPage() {
-  const invoices = [
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-  ];
+import { trackType } from "@/types/track.type";
+import { getMusic } from "@/services/Music";
+export default async function ArtistPage() {
+  const musics:trackType[] = await getMusic()
   return (
     <div className="bg-gradient-to-b from-blue-400 to-[500px] to-base-background">
       <div className="py-10 px-5 flex gap-3 items-end bg-">
@@ -119,9 +78,9 @@ export default function ArtistPage() {
             <TableRow></TableRow>
           </TableHeader>
           <TableBody>
-            {invoices.map((invoice, index) => (
+            {musics.map((invoice,index) => (
               <TableRow
-                key={invoice.invoice}
+                key={invoice._id}
                 className="border-none hover:bg-base-text group text-base-text "
               >
                 <TableCell className="font-medium p-2">
@@ -150,26 +109,26 @@ export default function ArtistPage() {
                   <div className="flex items-center">
                     <img
                       className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
-                      src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+                      src={invoice.image}
                     />
 
                     <div className="ml-4 font-semibold">
                       <div className="text-[14px] text-white hover:underline cursor-pointer">
-                        Đen đá không đường
+                        {invoice.name}
                       </div>
                       <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                        AMEE
+                        {invoice.artists.name}
                       </div>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="p-2">
                   <a href="" className="hover:underline group-hover:text-white">
-                    {invoice.paymentStatus}
+                    {invoice.name}
                   </a>
                 </TableCell>
                 <TableCell className="text-right p-2 group-hover:text-white">
-                  {invoice.totalAmount}
+                  {invoice.popularity}000view
                 </TableCell>
               </TableRow>
             ))}

@@ -9,5 +9,8 @@ export interface trackType {
     image:string
     name:string
     popularity:number
+    color_bg?:string
+    type:string
+    slug:string
 }
 
