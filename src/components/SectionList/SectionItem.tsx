@@ -4,14 +4,16 @@ import Link from "next/link";
 
 import { IoIosPlay } from "react-icons/io";
 type Props = {
-  rounded_img?: boolean;  
-  data:componentType
+  rounded_img?: boolean;
+  data: componentType;
 };
-export default async function SectionItem({ rounded_img = false,data }: Props) {
-
+export default async function SectionItem({
+  rounded_img = false,
+  data,
+}: Props) {
   return (
     <div className=" gap-2">
-        <Link href={`/${data.type}/${data.slug}`}>
+      <Link href={`/${data.type}/${data.slug}`}>
         <div
           key={data.slug}
           className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg group"
@@ -33,15 +35,12 @@ export default async function SectionItem({ rounded_img = false,data }: Props) {
           <div className="text-white pt-4 font-semibold text-[17px] text-nowrap text-ellipsis truncate text-container w-48 overflow-hidden whitespace-nowrap">
             {data.name}
           </div>
-          <div className="text-gray-400 pt-1 text-[14px]">
-            {data.type}
-          </div>
+          <div className="text-gray-400 pt-1 text-[14px]">{data.type}</div>
           <div className="text-gray-400 pt-1 pb-3 text-[14px]">
             {data.artists?.name}
           </div>
         </div>
-        </Link>
-     
+      </Link>
     </div>
   );
 }

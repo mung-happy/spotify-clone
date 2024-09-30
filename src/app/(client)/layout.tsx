@@ -9,17 +9,21 @@ export default function ClientLayout({
 }>) {
   return (
     <div className="bg-black px-2 pt-2">
-      <div className="flex gap-2 container">
+      <div className="flex gap-2">
         {/* side bar */}
         <Sidebar />
 
         {/* Content */}
-        <section className="w-full rounded-lg relative overflow-y-scroll flex-grow max-h-[calc(100vh-80px)] min-h-[500px]">
+        <section className="w-full rounded-lg relative">
           {/* header */}
           <Header />
-
-          <main className="text-white flex flex-col gap-5 ">{children}</main>
-          <Footer />
+          <main
+            id="scrollbar"
+            className="text-white flex flex-col gap-5 flex-grow max-h-[calc(100vh-150px)] min-h-[500px] overflow-y-scroll"
+          >
+            {children}
+            <Footer />
+          </main>
         </section>
       </div>
       <Controll />

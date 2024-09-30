@@ -3,7 +3,7 @@ import { LiaRandomSolid } from "react-icons/lia";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 export default function Controll() {
   return (
-    <div className="col-span-full bottom-0">
+    <div className="col-span-full absolute bottom-0 left-0 right-0">
       {/* <div className="flex justify-between items-center bg-gradient-to-r from-purple-700 to-blue-500 mt-2 text-white pt-3 pr-6 pb-2 pl-4">
         <div className="">
           <p className="font-bold text-sm">Xem trước Spotify</p>

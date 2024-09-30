@@ -4,6 +4,20 @@ import { FaPlus } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { IoLibrarySharp } from "react-icons/io5";
+import CardItem from "./CardItem";
+
+const cards = [
+  {
+    title: "Tạo danh sách đầu tiên của bạn",
+    subTitle: "Rất dễ! Chúng tôi sẽ giúp bạn",
+    buttonText: "Tạo danh sánh phát",
+  },
+  {
+    title: "Hãy cùng tìm và theo dõi một số podcast",
+    subTitle: "Chúng tôi sẽ cập nhật cho bạn thông tin về các tập mới",
+    buttonText: "Duyệt các podcast",
+  },
+];
 
 export default function Sidebar() {
   return (
@@ -49,7 +63,15 @@ export default function Sidebar() {
           </li>
         </ul>
         <div className="">
-          <div className="text-white px-4 py-5 bg-sub-background rounded-lg mt-2">
+          {cards.map((card, index) => (
+            <CardItem
+              key={index}
+              title={card.title}
+              subTitle={card.subTitle}
+              buttonText={card.buttonText}
+            />
+          ))}
+          {/* <div className="text-white px-4 py-5 bg-sub-background rounded-lg mt-2">
             <p className="font-bold">Tạo danh sách đầu tiên của bạn</p>
             <p className="text-sm">Rất dễ! Chúng tôi sẽ giúp bạn</p>
             <button className="text-black font-medium text-sm h-8 rounded-full bg-white">
@@ -64,7 +86,7 @@ export default function Sidebar() {
             <button className="text-black font-medium text-sm h-8 rounded-full bg-white">
               <span className="px-4 py-1">Duyệt các podcast</span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>
