@@ -1,22 +1,21 @@
-import { albumType } from "./album.type";
-import { genresType } from "./genres.type";
-import { trackType } from "./track.type";
-
-export interface artistType {
-    _id?: string;
-    followers:follower
-    name:string;
-    genres?:genresType[]
-    image:string
-    popularity?:number
-    banner?:string,
-    tracks?:trackType[]
-    album:albumType[]
-    type:string
-    slug:string
-}
-
-type follower = {
-    href: string
-    total:number
+export interface SpotifyArtist {
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: string | null;
+    total: number;
+  };
+  genres: string[];
+  href: string;
+  id: string;
+  images: {
+    url: string;
+    height: number;
+    width: number;
+  }[];
+  name: string;
+  popularity: number;
+  type: string;
+  uri: string;
 }

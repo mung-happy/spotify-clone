@@ -1,19 +1,13 @@
 import { ARTIST } from "@/constants";
-import { cookies } from "next/headers";
+import axiosInstance from "@/lib/token";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const cookieStore = cookies();
-  const token = cookieStore.get("spotify_token");
-  const response = await fetch(
-    `https://api.spotify.com/v1/artists?ids=${ARTIST}`,
-    {
-      headers: {
-        Authorization: "Bearer " + token?.value,
-      },
-    }
-  );
-  const data = await response.json();
-
-  return Response.json(data);
+  try {
+    const response = await axiosInstance.get(`artists?ids=${ARTIST}`);
+    const data = response.data;
+    return Response.json(data);
+  } catch (error) {
+    console.log(error);
+  }
 }

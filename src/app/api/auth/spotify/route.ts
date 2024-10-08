@@ -2,7 +2,6 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET_ID = process.env.CLIENT_SECRET_ID;
@@ -30,5 +29,4 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   });
   console.log("Set cookie");
   return Response.json({ data });
-  // res.status(200).json({ access_token, expires_in });
 }

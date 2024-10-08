@@ -1,26 +1,17 @@
-import { trackType } from "@/types/track.type";
-import SectionItem from "@/components/SectionList/SectionItem";
-import { getMusic } from "@/services/Music";
-import Link from "next/link";
 import { getArtist } from "@/services/Artists";
-import { getAlbum } from "@/services/Album";
-import SectionContainer from "@/components/SectionList/SectionContainer";
 
 export default async function Home() {
-  const limit = 8;
-  const { payload } = await getMusic(limit);
-  const musics: trackType[] = payload;
-  const artists = await getArtist(limit);
-  const albums = await getAlbum(limit);
+  const artists = await getArtist();
+  console.log("data", artists);
 
   return (
     <div className="bg-gradient-to-b from-[#353535] via-base-background to-base-background">
-      <SectionContainer title="Nghệ sĩ nổi bật" link="/artist">
+      {/* <SectionContainer title="Nghệ sĩ nổi bật" link="/artist">
         {artists.payload.map((artist) => (
           <SectionItem key={artist._id} data={artist} rounded_img={true} />
         ))}
-      </SectionContainer>
-      <SectionContainer title="Bài hát nổi bật" link="/track">
+      </SectionContainer> */}
+      {/* <SectionContainer title="Bài hát nổi bật" link="/track">
         {musics.map((tracks) => (
           <SectionItem key={tracks._id} data={tracks} />
         ))}
@@ -29,7 +20,7 @@ export default async function Home() {
         {albums.payload.map((album) => (
           <SectionItem key={album._id} data={album} />
         ))}
-      </SectionContainer>
+      </SectionContainer> */}
     </div>
   );
 }
