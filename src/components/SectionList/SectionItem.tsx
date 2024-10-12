@@ -1,4 +1,3 @@
-import { getMusic } from "@/services/Music";
 import { componentType } from "@/types/album.track";
 import Link from "next/link";
 
@@ -23,7 +22,7 @@ export default async function SectionItem({
               className={`${
                 rounded_img ? "rounded-full" : "rounded-md"
               } w-[200px] h-[200px] object-cover`}
-              src={data.image}
+              src={data.thumbnail}
               alt=""
             />
             <div className="absolute bottom-0 right-2 opacity-0 shadow-xl group-hover:bottom-2 group-hover:opacity-100 duration-300">
@@ -36,9 +35,9 @@ export default async function SectionItem({
             {data.name}
           </div>
           <div className="text-gray-400 pt-1 text-[14px]">{data.type}</div>
-          <div className="text-gray-400 pt-1 pb-3 text-[14px]">
+          {/* <div className="text-gray-400 pt-1 pb-3 text-[14px]">
             {data.artists?.name}
-          </div>
+          </div> */}
         </div>
       </Link>
     </div>

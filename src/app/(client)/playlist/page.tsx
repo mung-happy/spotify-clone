@@ -14,9 +14,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { trackType } from "@/types/track.type";
-import { getMusic } from "@/services/Music";
+import { getMusic } from "@/services/Tracks";
 export default async function ArtistPage() {
-  const musics:trackType[] = await getMusic()
+  const musics: trackType[] = await getMusic();
   return (
     <div className="bg-gradient-to-b from-blue-400 to-[500px] to-base-background">
       <div className="py-10 px-5 flex gap-3 items-end bg-">
@@ -78,7 +78,7 @@ export default async function ArtistPage() {
             <TableRow></TableRow>
           </TableHeader>
           <TableBody>
-            {musics.map((invoice,index) => (
+            {musics.map((invoice, index) => (
               <TableRow
                 key={invoice._id}
                 className="border-none hover:bg-base-text group text-base-text "

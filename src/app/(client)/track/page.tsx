@@ -1,6 +1,6 @@
 import { trackType } from "@/types/track.type";
 import SectionItem from "@/components/SectionList/SectionItem";
-import { getMusic } from "@/services/Music";
+import { getMusic } from "@/services/Tracks";
 import SectionContainer from "@/components/SectionList/SectionContainer";
 
 export default async function Pagetrack() {

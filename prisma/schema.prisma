@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Tracks {
+  id         Int      @id @default(autoincrement())
+  artist_id  Int
+  thumbnail  String
+  name       String
+  popularity Int?
+  color_bg   String
+  type       String
+  slug       String
+  track_url  String
+  create_at  DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  track_genre Track_Genre[]
+  album_track Album_Track[]
+  artist      Artists       @relation(fields: [artist_id], references: [id])
+}
+
+model Artists {
+  id         Int      @id @default(autoincrement())
+  name       String
+  thumbnail  String
+  banner     String
+  popularity Int?
+  type       String
+  slug       String
+  create_at  DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  album Albums[]
+  track Tracks[]
+}
+
+model Genres {
+  id        Int      @id @default(autoincrement())
+  name      String
+  thumbnail String
+  color_bg  String
+  slug      String
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+
+  track_genre Track_Genre[]
+}
+
+model Albums {
+  id        Int      @id @default(autoincrement())
+  artist_id Int
+  name      String
+  thumbnail String
+  color_bg  String
+  type      String
+  slug      String
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+
+  album_track Album_Track[]
+  artist      Artists       @relation(fields: [artist_id], references: [id])
+}
+
+model Track_Genre {
+  id       Int @id @default(autoincrement())
+  track_id Int
+  genre_id Int
+
+  genre Genres @relation(fields: [genre_id], references: [id])
+  track Tracks @relation(fields: [track_id], references: [id])
+}
+
+model Album_Track {
+  id       Int @id @default(autoincrement())
+  track_id Int
+  album_id Int
+
+  album Albums @relation(fields: [album_id], references: [id])
+  track Tracks @relation(fields: [track_id], references: [id])
+}

@@ -1,11 +1,16 @@
 import { https } from "@/lib/configHttp";
-import { SpotifyArtist } from "@/types/artists.type";
+import { ArtistType } from "@/types/artists.type";
 
-export async function getArtist(): Promise<SpotifyArtist[]> {
-  const artists = await fetch(`http://localhost:3000/api/artits`);
-  const artistsData = await artists.json();
-  return artistsData;
+export async function getArtist(
+  limit: number = 6,
+  type: string = ""
+): Promise<ArtistType[]> {
+  const response = await https.get<{ data: ArtistType[] }>(
+    `artists?limit=${limit}&type=${type}`
+  );
+  return response.payload.data;
 }
+
 export async function getArtistId(pid: string) {
   return https.get("artist/" + pid);
 }

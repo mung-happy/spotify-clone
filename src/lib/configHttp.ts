@@ -18,21 +18,10 @@ const request = async <Response>(
   endpoint: string,
   body?: any
 ) => {
-  const baseHeaders: { [key: string]: string } = {
-    "Content-Type": "application/json",
-  };
-  if (isClient()) {
-    const dataLocal = localStorage.getItem("user");
-    if (dataLocal) {
-      const data = JSON.parse(dataLocal);
-      baseHeaders.Authorization = `Bearer ${JSON.parse(data.token)}`;
-    }
-  }
   const fullUrl = endpoint.startsWith("/")
     ? `${API}${endpoint}`
     : `${API}/${endpoint}`;
   const res = await fetch(fullUrl, {
-    headers: baseHeaders,
     body: body ? JSON.stringify(body) : undefined,
     method,
     next: { revalidate: 60 },
