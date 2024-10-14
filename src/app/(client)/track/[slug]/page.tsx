@@ -18,7 +18,7 @@ import { trackType } from "@/types/track.type";
 import { getMusic, getMusicId } from "@/services/Tracks";
 import Link from "next/link";
 export default async function PageId({ params }: { params: { _id: string } }) {
-  const musics = await getMusic();
+  // const musics = await getMusic();
   const musicId = await getMusicId(params._id as string);
   return (
     <div className="bg-gradient-to-b  to-[500px] to-base-background">
@@ -98,7 +98,7 @@ export default async function PageId({ params }: { params: { _id: string } }) {
             </TableHead>
             <TableRow></TableRow>
           </TableHeader>
-          <TableBody>
+          {/* <TableBody>
             {musics.payload.map((invoice, index) => (
               <TableRow
                 key={invoice._id}
@@ -164,7 +164,7 @@ export default async function PageId({ params }: { params: { _id: string } }) {
                 </TableCell>
               </TableRow>
             ))}
-          </TableBody>
+          </TableBody> */}
         </Table>
       </div>
     </div>

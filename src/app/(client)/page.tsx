@@ -11,12 +11,12 @@ export default async function Home() {
     <div className="bg-gradient-to-b from-[#353535] via-base-background to-base-background">
       <SectionContainer title="Nghệ sĩ nổi bật" link="/artist">
         {artists.map((artist) => (
-          <SectionItem key={artist.id} data={artist} rounded_img={true} />
+          <SectionItem key={artist.slug} data={artist} rounded_img={true} />
         ))}
       </SectionContainer>
       <SectionContainer title="Bài hát nổi bật" link="/track">
         {tracks.map((tracks) => (
-          <SectionItem key={tracks.id} data={tracks} />
+          <SectionItem key={tracks.slug} data={tracks} />
         ))}
       </SectionContainer>
       {/* <SectionContainer title="Album nổi bật" link="/track">

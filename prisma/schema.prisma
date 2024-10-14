@@ -33,7 +33,7 @@ model Artists {
   name       String
   thumbnail  String
   banner     String
-  popularity Int?
+  popularity Int
   type       String
   slug       String
   create_at  DateTime @default(now())

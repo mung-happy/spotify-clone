@@ -12,6 +12,7 @@ export async function getTracks(
   return response.payload.data;
 }
 
-export function getMusicId(pid: string) {
-  return https.get<trackType>("track/" + pid);
+export async function getTracksBySlug(slug: string): Promise<trackType> {
+  const response = await https.get<{ data: trackType }>(`tracks/${slug}`);
+  return response.payload.data;
 }

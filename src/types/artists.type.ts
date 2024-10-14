@@ -3,7 +3,7 @@ export interface ArtistType {
   name: string;
   thumbnail: string;
   banner: string;
-  popularity: number;
+  popularity: number | null;
   type: string;
   slug: string;
 }

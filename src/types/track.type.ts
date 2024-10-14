@@ -1,10 +1,15 @@
+import { ArtistType } from "./artists.type";
+
 export interface trackType {
-  id: string;
-  spotify: string;
+  id: number;
   thumbnail: string;
   name: string;
-  popularity: number;
-  color_bg?: string;
+  popularity: number | null;
+  color_bg: string;
   type: string;
   slug: string;
+}
+
+export interface TrackDetail extends trackType {
+  artist: ArtistType;
 }
