@@ -8,6 +8,7 @@ export interface trackType {
   color_bg: string;
   type: string;
   slug: string;
+  track_url: string;
 }
 
 export interface TrackDetail extends trackType {

@@ -176,9 +176,7 @@ export default async function PageId({ params }: { params: { slug: string } }) {
                     {track.name}
                   </Link>
                 </TableCell>
-                <TableCell className="text-right p-2 group-hover:text-white">
-                  {track.popularity}000view
-                </TableCell>
+                <TableCell className="text-right p-2 group-hover:text-white"></TableCell>
               </TableRow>
             ))}
           </TableBody>
