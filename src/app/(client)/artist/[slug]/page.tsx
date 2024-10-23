@@ -15,15 +15,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { trackType } from "@/types/track.type";
-import { getMusic } from "@/services/Tracks";
 import Link from "next/link";
-import { artistType } from "@/types/artists.type";
 import { getArtistId } from "@/services/Artists";
-import { getAlbumId } from "@/services/Album";
 import SectionItem from "@/components/SectionList/SectionItem";
-export default async function PageId({ params }: { params: { _id: string } }) {
-  const artistId = await getArtistId(params._id as string);
+export default async function PageId({ params }: { params: { slug: string } }) {
+  const data = await getArtistId(params.slug);
+
   const formatNumber = (number: { toString: () => string }) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
@@ -37,16 +34,16 @@ export default async function PageId({ params }: { params: { _id: string } }) {
       }}
     >
       <div
-        className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-60 bg-black"
-        style={{ backgroundImage: `url(${artistId.payload.banner})` }}
+        className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-96 bg-black"
+        style={{ backgroundImage: `url(${data.artist.banner})` }}
       >
-        {/* <div>
-            <img
-              className="w-[226px] h-[226px]"
-              src={artistId.images}
-              alt=""
-            />
-          </div> */}
+        <div>
+          <img
+            className="w-[226px] h-[226px]"
+            src={data.artist.thumbnail}
+            alt=""
+          />
+        </div>
         <div>
           <div className="flex items-center">
             <PiSealCheckFill className="text-blue-500 text-2xl" />
@@ -55,15 +52,15 @@ export default async function PageId({ params }: { params: { _id: string } }) {
             </span>
           </div>
           <h1 className="text-white  text-7xl py-3 font-black">
-            {artistId.payload.name}
+            {data.artist.name}
           </h1>
-          <span className="mb-2 font-semibold text-white">
-            {formatNumber(`${artistId.payload.followers.total}`)} người theo dõi
+          {/* <span className="mb-2 font-semibold text-white">
+            {formatNumber(`${artist}`)} người theo dõi
             hàng tháng
-          </span>
+          </span> */}
           {/* <div className="text-sm my-1">
-              <span className="text-2xl font-normal">{musicId.artists.name}</span>
-            </div> */}
+            <span className="text-2xl font-normal">{data.artist.name}</span>
+          </div> */}
           {/* <div className="flex items-center">
               <img className="w-10 rounded-full" alt="" />
               <span>
@@ -97,31 +94,31 @@ export default async function PageId({ params }: { params: { _id: string } }) {
             <BsThreeDots className="text-base-text hover:text-white hover:scale-105" />
           </div>
           {/* <div>
-              <span className="flex items-center gap-3 text-icon-color hover:text-white">
-                Danh sách
-                <span>
-                  <FaListUl />
-                </span>
+            <span className="flex items-center gap-3 text-icon-color hover:text-white">
+              Danh sách
+              <span>
+                <FaListUl />
               </span>
-            </div> */}
+            </span>
+          </div> */}
         </div>
         <div className="font-bold mt-3 text-3xl mb-8">
           <h1>Phổ biến</h1>
         </div>
         <Table>
           <TableHeader>
-            {/* <TableHead className="w-5"></TableHead>
-              <TableHead>Tiêu đề</TableHead>
-              <TableHead>Album</TableHead>
-              <TableHead className="w-[100px]">
-                <IoTimeOutline className="mx-auto" />
-              </TableHead> */}
-            {/* <TableRow></TableRow> */}
+            <TableHead className="w-5"></TableHead>
+            <TableHead>Tiêu đề</TableHead>
+            <TableHead></TableHead>
+            <TableHead className="w-[100px]">
+              <IoTimeOutline className="mx-auto" />
+            </TableHead>
+            <TableRow></TableRow>
           </TableHeader>
           <TableBody>
-            {artistId.payload.tracks?.map((invoice, index) => (
+            {data.tracks?.map((track, index) => (
               <TableRow
-                key={invoice._id}
+                key={track.id}
                 className="border-none hover:bg-base-text group text-base-text "
               >
                 <TableCell className="font-medium p-2">
@@ -148,24 +145,24 @@ export default async function PageId({ params }: { params: { _id: string } }) {
                 </TableCell>
                 <TableCell className="p-2">
                   <div className="flex items-center">
-                    <Link href={`/track/${invoice.slug}`}>
+                    <Link href={`/track/${track.slug}`}>
                       <img
                         className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
-                        src={invoice.image}
+                        src={track.thumbnail}
                       />
                     </Link>
                     <div className="ml-4 font-semibold">
                       <div className="text-[14px] text-white hover:underline cursor-pointer">
                         <Link
-                          href={`/track/${invoice.slug}`}
+                          href={`/track/${track.slug}`}
                           className="hover:underline group-hover:text-white"
                         >
-                          {invoice.name}
+                          {track.name}
                         </Link>
                       </div>
                       <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                        <Link href={`${invoice.artists.slug}`}>
-                          {invoice.artists.name}
+                        <Link href={`${data.artist.slug}`}>
+                          {data.artist.name}
                         </Link>
                       </div>
                     </div>
@@ -173,14 +170,14 @@ export default async function PageId({ params }: { params: { _id: string } }) {
                 </TableCell>
                 <TableCell className="p-2">
                   <Link
-                    href={`track/${invoice.slug}`}
+                    href={`track/${track.slug}`}
                     className="hover:underline group-hover:text-white"
                   >
-                    {invoice.name}
+                    {track.name}
                   </Link>
                 </TableCell>
                 <TableCell className="text-right p-2 group-hover:text-white">
-                  {invoice.popularity}000view
+                  {track.popularity}000view
                 </TableCell>
               </TableRow>
             ))}
@@ -189,11 +186,11 @@ export default async function PageId({ params }: { params: { _id: string } }) {
       </div>
       <div className="p-3">
         <h2 className="font-semibold p-3 text-3xl">Album</h2>
-        <div className="grid grid-cols-4">
-          {artistId.payload.album.map((album) => (
+        {/* <div className="grid grid-cols-4">
+          {artist.payload.album.map((album) => (
             <SectionItem data={album} />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

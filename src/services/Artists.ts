@@ -1,5 +1,6 @@
 import { https } from "@/lib/configHttp";
 import { ArtistType } from "@/types/artists.type";
+import { trackType } from "@/types/track.type";
 
 export async function getArtist(
   limit: number = 6,
@@ -11,6 +12,11 @@ export async function getArtist(
   return response.payload.data;
 }
 
-export async function getArtistId(pid: string) {
-  return https.get("artist/" + pid);
+export async function getArtistId(
+  slug: string
+): Promise<{ artist: ArtistType; tracks: trackType[] }> {
+  const response = await https.get<{
+    data: { artist: ArtistType; tracks: trackType[] };
+  }>("artists/" + slug);
+  return response.payload.data;
 }
