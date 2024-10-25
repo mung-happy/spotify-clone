@@ -20,6 +20,7 @@ model Tracks {
   type       String
   slug       String
   track_url  String
+  duration   String   @default("0")
   create_at  DateTime @default(now())
   update_at  DateTime @default(now())
 

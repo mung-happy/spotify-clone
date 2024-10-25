@@ -1,6 +1,6 @@
 import { ArtistType } from "./artists.type";
 
-export interface trackType {
+export interface TrackType {
   id: number;
   thumbnail: string;
   name: string;
@@ -9,8 +9,9 @@ export interface trackType {
   type: string;
   slug: string;
   track_url: string;
+  duration: string;
 }
 
-export interface TrackDetail extends trackType {
+export interface TrackDetail extends TrackType {
   artist: ArtistType;
 }

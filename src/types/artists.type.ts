@@ -1,3 +1,5 @@
+import { TrackType } from "./track.type";
+
 export interface ArtistType {
   id: number;
   name: string;
@@ -6,4 +8,10 @@ export interface ArtistType {
   popularity: number | null;
   type: string;
   slug: string;
+  duration: string;
+}
+
+export interface ArtistDetail {
+  artist: ArtistType;
+  tracks: TrackType[];
 }
