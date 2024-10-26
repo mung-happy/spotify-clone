@@ -1,8 +1,8 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { palyMusicType } from "./type";
+import { createSlice } from "@reduxjs/toolkit";
+import { playMusicType } from "./type";
 
-const initialState: palyMusicType = {
-  url: "",
+const initialState: playMusicType = {
+  track: null,
   play: false,
 };
 
@@ -10,8 +10,8 @@ const playSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    playMusic: (state, acton) => {
-      state.url = acton.payload.url;
+    playMusic: (state, action) => {
+      state.track = action.payload.track;
       state.play = true;
     },
     playMusicCurrent: (state) => {

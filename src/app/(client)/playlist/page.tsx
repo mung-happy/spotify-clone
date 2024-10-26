@@ -13,10 +13,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { trackType } from "@/types/track.type";
-import { getMusic } from "@/services/Tracks";
+import { TrackType } from "@/types/track.type";
+import { getTracks } from "@/services/Tracks";
 export default async function ArtistPage() {
-  const musics: trackType[] = await getMusic();
+  const musics: TrackType[] = await getTracks();
   return (
     <div className="bg-gradient-to-b from-blue-400 to-[500px] to-base-background">
       <div className="py-10 px-5 flex gap-3 items-end bg-">
@@ -80,7 +80,7 @@ export default async function ArtistPage() {
           <TableBody>
             {musics.map((invoice, index) => (
               <TableRow
-                key={invoice._id}
+                key={invoice.id}
                 className="border-none hover:bg-base-text group text-base-text "
               >
                 <TableCell className="font-medium p-2">
@@ -109,7 +109,7 @@ export default async function ArtistPage() {
                   <div className="flex items-center">
                     <img
                       className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
-                      src={invoice.image}
+                      src={invoice.thumbnail}
                     />
 
                     <div className="ml-4 font-semibold">
@@ -117,7 +117,7 @@ export default async function ArtistPage() {
                         {invoice.name}
                       </div>
                       <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                        {invoice.artists.name}
+                        {invoice.slug}
                       </div>
                     </div>
                   </div>

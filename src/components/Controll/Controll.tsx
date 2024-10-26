@@ -1,9 +1,43 @@
-import { IoIosPlay, IoIosAddCircleOutline, IoIosRepeat } from "react-icons/io";
+"use client";
+
+import {
+  IoIosPlay,
+  IoIosAddCircleOutline,
+  IoIosRepeat,
+  IoIosPause,
+} from "react-icons/io";
 import { LiaRandomSolid } from "react-icons/lia";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useEffect, useRef } from "react";
+import { pauseMusicCurrent, playMusicCurrent } from "@/redux/playMusic/slice";
+
 export default function Controll() {
+  const music = useSelector((state: RootState) => state.playMusic);
+  const audioRefs = useRef<HTMLAudioElement | null>(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (audioRefs.current && music.play) {
+      audioRefs.current.play();
+      return;
+    }
+    if (audioRefs.current && !music.play) {
+      audioRefs.current.pause();
+      return;
+    }
+  }, [music.play]);
+
+  const handlePlay = () => {
+    dispatch(playMusicCurrent());
+  };
+
+  const handlePause = () => {
+    dispatch(pauseMusicCurrent());
+  };
   return (
     <div className="col-span-full absolute bottom-0 left-0 right-0">
+      <audio ref={audioRefs} src={music.track?.track_url}></audio>
       {/* <div className="flex justify-between items-center bg-gradient-to-r from-purple-700 to-blue-500 mt-2 text-white pt-3 pr-6 pb-2 pl-4">
         <div className="">
           <p className="font-bold text-sm">Xem trước Spotify</p>
@@ -36,14 +70,14 @@ export default function Controll() {
           <div className="flex items-center ml-4">
             <img
               className="rounded-t-sm shadow-2xl object-cover w-14 h-14"
-              src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg"
+              src={music.track?.thumbnail}
             />
             <div className="ml-4">
               <div className="text-[14px] text-white hover:underline cursor-pointer">
-                Đen đá không đường
+                {music.track?.name}
               </div>
               <div className="font-semibold text-[11px] text-base-text hover:underline hover:text-white cursor-pointer">
-                AMEE
+                {music.track?.slug}
               </div>
             </div>
           </div>
@@ -62,7 +96,14 @@ export default function Controll() {
                 <GiPreviousButton />
               </button>
               <button className="p-1 rounded-full mx-3 bg-white hover:scale-105 text-2xl">
-                <IoIosPlay />
+                <IoIosPlay
+                  className={music.play ? "hidden" : "block"}
+                  onClick={handlePlay}
+                />
+                <IoIosPause
+                  className={music.play ? "block" : "hidden"}
+                  onClick={handlePause}
+                />
               </button>
               <button className="mx-2 text-icon-color hover:text-white text-xl">
                 <GiNextButton />

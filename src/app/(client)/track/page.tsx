@@ -1,4 +1,4 @@
-import { trackType } from "@/types/track.type";
+import { TrackType } from "@/types/track.type";
 import SectionItem from "@/components/SectionList/SectionItem";
 import { getTracks } from "@/services/Tracks";
 import SectionContainer from "@/components/SectionList/SectionContainer";

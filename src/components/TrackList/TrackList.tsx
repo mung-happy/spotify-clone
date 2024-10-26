@@ -22,11 +22,22 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArtistDetail } from "@/types/artists.type";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  pauseMusicCurrent,
+  playMusic,
+  playMusicCurrent,
+} from "@/redux/playMusic/slice";
+import { RootState } from "@/redux/store";
+import { TrackType } from "@/types/track.type";
 
 const TrackList = () => {
   const params = useParams();
   const audioRefs = useRef<HTMLAudioElement | null>(null);
   const [artist, setArtist] = useState<ArtistDetail | null>(null);
+
+  const music = useSelector((state: RootState) => state.playMusic);
+  const dispatch = useDispatch();
   const getArtistDetail = useCallback(async () => {
     const response = await axios.get(
       `http://localhost:3000/api/artists/${params.slug}`
@@ -39,17 +50,16 @@ const TrackList = () => {
   }, [getArtistDetail]);
   console.log(artist);
 
-  const handlePlay = (id) => {
-    if (audioRefs.current) {
-      audioRefs.current.play();
-    }
-    // Dừng tất cả các bài đang phát
-    // Object.entries(audioRefs.current).forEach(([key, audio]) => {
-    //   if (key !== id && audio) {
-    //     audio.pause();
-    //     audio.currentTime = 0; // Đặt lại thời gian phát
-    //   }
-    // });
+  const handlePlayList = () => {
+    dispatch(playMusicCurrent());
+  };
+
+  const handlePlayMusic = (track: TrackType) => {
+    dispatch(playMusic({ track }));
+  };
+
+  const handlePauseMusic = () => {
+    dispatch(pauseMusicCurrent());
   };
   return (
     <>
@@ -99,7 +109,7 @@ const TrackList = () => {
       <div className="bg-sub-background/20 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6 text-4xl">
-            <button onClick={handlePlay}>
+            <button onClick={handlePlayList}>
               <PlayPauseMusic />
             </button>
             {/* <IoIosAddCircleOutline className="text-base-text hover:text-white hover:scale-105" /> */}
@@ -120,10 +130,6 @@ const TrackList = () => {
             </span>
           </div> */}
         </div>
-        <audio
-          ref={audioRefs}
-          src="https://ia600304.us.archive.org/12/items/test-1_2003/2f37da1d4221f40b9d1a98cd191f4d6f1646ad17.mp3"
-        ></audio>
         <div className="font-bold mt-3 text-3xl mb-8">
           <h1>Phổ biến</h1>
         </div>
@@ -144,22 +150,40 @@ const TrackList = () => {
                 className="border-none hover:bg-base-text group text-base-text "
               >
                 <TableCell className="font-medium p-2">
-                  <div className="hidden">
-                    <div className="group-hover:block hidden text-white">
-                      <button>
+                  <div
+                    className={
+                      music.play && music.track?.id === track.id
+                        ? "hidden"
+                        : "block"
+                    }
+                  >
+                    <div className="group-hover:block text-white">
+                      <button onClick={() => handlePlayMusic(track)}>
                         <IoPlaySharp />
                       </button>
                     </div>
                   </div>
-                  <div>
+                  <div
+                    className={
+                      music.play && music.track?.id === track.id
+                        ? "block"
+                        : "hidden"
+                    }
+                  >
                     <img
                       width={20}
-                      className="group-hover:hidden"
+                      className={`group-hover:hidden ${
+                        music.play ? "block" : "hidden"
+                      }`}
                       src="/music-wave.svg"
                       alt=""
                     />
-                    <div className="group-hover:block hidden text-lg w-4 text-white">
-                      <button>
+                    <div
+                      className={`group-hover:block hidden text-lg w-4 text-white ${
+                        music.play ? "hidden" : "block"
+                      }`}
+                    >
+                      <button onClick={handlePauseMusic}>
                         <IoIosPause />
                       </button>
                     </div>
