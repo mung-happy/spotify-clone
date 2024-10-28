@@ -11,7 +11,6 @@ export interface ArtistType {
   duration: string;
 }
 
-export interface ArtistDetail {
-  artist: ArtistType;
+export interface ArtistDetail extends ArtistType {
   tracks: TrackType[];
 }

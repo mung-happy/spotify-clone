@@ -1,6 +1,9 @@
 import { TrackType } from "@/types/track.type";
 
 export interface playMusicType {
-  track: TrackType | null;
-  play: boolean;
+  id: number;
+  type: string;
+  tracks: TrackType[];
+  currentSongIndex: number;
+  isPlay: boolean;
 }

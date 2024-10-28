@@ -9,19 +9,22 @@ export async function GET(
   const prisma = new PrismaClient();
 
   try {
-    const artist = await prisma.artists.findFirst({
+    const result = await prisma.artists.findFirst({
       where: {
         slug: params.slug,
       },
-    });
-    if (!artist) throw new Error("Artist not found");
-
-    const tracks = await prisma.tracks.findMany({
-      where: {
-        artist_id: artist.id,
+      include: {
+        track: {
+          include: {
+            artist: true,
+          },
+        },
       },
     });
-    return Response.json({ data: { artist, tracks } });
+    const tracks = result?.track ?? [];
+    const data = { ...result, track: undefined };
+
+    return Response.json({ detail: data, tracks });
   } catch (error) {
     console.log(error);
   }

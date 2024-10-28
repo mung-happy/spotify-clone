@@ -2,6 +2,7 @@ import { componentType } from "@/types/album.track";
 import Link from "next/link";
 
 import { IoIosPlay } from "react-icons/io";
+import PlayPauseMusic from "../PlayPauseButton/PlayPauseMusic";
 type Props = {
   rounded_img?: boolean;
   data: componentType;
@@ -25,11 +26,9 @@ export default async function SectionItem({
               src={data.thumbnail}
               alt=""
             />
-            <div className="absolute bottom-0 right-2 opacity-0 shadow-xl group-hover:bottom-2 group-hover:opacity-100 duration-300">
-              <button className="p-2 bg-green-500 rounded-full text-black text-3xl">
-                <IoIosPlay />
-              </button>
-            </div>
+            {/* <div className="absolute bottom-0 right-2 opacity-0 shadow-xl group-hover:bottom-2 group-hover:opacity-100 duration-300">
+              <PlayPauseMusic/>
+            </div> */}
           </div>
           <div className="text-white pt-4 font-semibold text-[17px] text-nowrap text-ellipsis truncate text-container w-48 overflow-hidden whitespace-nowrap">
             {data.name}

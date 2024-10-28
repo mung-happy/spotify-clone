@@ -1,9 +1,13 @@
-import { IoIosPlay } from "react-icons/io";
+import { IoIosPause, IoIosPlay } from "react-icons/io";
 
-export default function PlayPauseMusic() {
+interface PlayPauseMusicProps {
+  isPlay: boolean;
+}
+
+export default function PlayPauseMusic({ isPlay }: PlayPauseMusicProps) {
   return (
     <button className="p-2 bg-green-500 rounded-full text-black">
-      <IoIosPlay />
+      {isPlay ? <IoIosPause /> : <IoIosPlay />}
     </button>
   );
 }

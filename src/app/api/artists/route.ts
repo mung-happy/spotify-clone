@@ -11,7 +11,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
       orderBy: {
         popularity: artistsHot === "hot" ? "desc" : "asc",
       },
+      include: {
+        track: true,
+      },
     });
+
     return Response.json({ data: artists });
   } catch (error) {
     console.log(error);

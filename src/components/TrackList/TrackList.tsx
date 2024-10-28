@@ -18,10 +18,6 @@ import {
 } from "@/components/ui/table";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ArtistDetail } from "@/types/artists.type";
-import axios from "axios";
-import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   pauseMusicCurrent,
@@ -30,60 +26,88 @@ import {
 } from "@/redux/playMusic/slice";
 import { RootState } from "@/redux/store";
 import { TrackType } from "@/types/track.type";
+import { DetailData } from "@/types/ultits.type";
+import { isArtistType } from "@/lib/utils";
 
-const TrackList = () => {
-  const params = useParams();
-  const audioRefs = useRef<HTMLAudioElement | null>(null);
-  const [artist, setArtist] = useState<ArtistDetail | null>(null);
+interface TrackListProps {
+  data: DetailData | null;
+}
 
+const TrackList = ({ data }: TrackListProps) => {
   const music = useSelector((state: RootState) => state.playMusic);
   const dispatch = useDispatch();
-  const getArtistDetail = useCallback(async () => {
-    const response = await axios.get(
-      `http://localhost:3000/api/artists/${params.slug}`
-    );
-    setArtist(response.data.data);
-  }, [params.slug]);
 
-  useEffect(() => {
-    getArtistDetail();
-  }, [getArtistDetail]);
-  console.log(artist);
+  const currentSong = music.tracks[music.currentSongIndex];
 
   const handlePlayList = () => {
+    if (music.isPlay && music.id === data?.detail.id) {
+      handlePauseMusic();
+    } else if (!music.isPlay && music.id === data?.detail.id) {
+      handlePlay();
+    } else {
+      dispatch(
+        playMusic({
+          tracks: data?.tracks ?? [],
+          id: data?.detail.id,
+          type: data?.detail.type,
+        })
+      );
+    }
+  };
+
+  const handlePlay = () => {
     dispatch(playMusicCurrent());
   };
 
   const handlePlayMusic = (track: TrackType) => {
-    dispatch(playMusic({ track }));
+    dispatch(
+      playMusic({
+        id: data?.detail.id,
+        type: data?.detail.type,
+        tracks: [track],
+      })
+    );
   };
 
   const handlePauseMusic = () => {
     dispatch(pauseMusicCurrent());
   };
+
   return (
     <>
       <div
         className="py-10 px-5 flex gap-3 items-end bg- bg-cover h-96 bg-black"
-        style={{ backgroundImage: `url(${artist?.artist.banner})` }}
+        style={{
+          backgroundImage: `${
+            isArtistType(data?.detail)
+              ? `url(${data?.detail?.banner})`
+              : `linear-gradient(to bottom, ${data?.detail?.color_bg}, #000000)`
+          }`,
+        }}
       >
         <div>
           <img
             className="w-[226px] h-[226px]"
-            src={artist?.artist.thumbnail}
+            src={data?.detail.thumbnail}
             alt=""
           />
         </div>
         <div>
-          <div className="flex items-center">
-            <PiSealCheckFill className="text-blue-500 text-2xl" />
-            <span className=" font-medium text-white">
-              Nghệ sĩ được xác minh
-            </span>
-          </div>
+          {isArtistType(data?.detail) ? (
+            <div className="flex items-center">
+              <PiSealCheckFill className="text-blue-500 text-2xl" />
+              <span className=" font-medium text-white">
+                Nghệ sĩ được xác minh
+              </span>
+            </div>
+          ) : (
+            <span className=" font-medium text-white">Bài hát</span>
+          )}
+
           <h1 className="text-white  text-7xl py-3 font-black">
-            {artist?.artist.name}
+            {data?.detail.name}
           </h1>
+
           {/* <span className="mb-2 font-semibold text-white">
         {formatNumber(`${artist}`)} người theo dõi
         hàng tháng
@@ -91,35 +115,76 @@ const TrackList = () => {
           {/* <div className="text-sm my-1">
         <span className="text-2xl font-normal">{data.artist.name}</span>
       </div> */}
-          {/* <div className="flex items-center">
-          <img className="w-10 rounded-full" alt="" />
-          <span>
-            <a href="" className="font-bold hover:underline ">
-              {musicId.artists.name}
-            </a>
-          </span>
-          <BsDot />
-          <span className="font-medium">
-            <span className="text-white">{musicId.popularity}k lượt theo dõi</span>
-            <span className="text-base-text"> . 3:54</span>
-          </span>
-        </div> */}
+          <div className="flex items-center">
+            <span className="text-white">
+              {data?.detail.popularity}k lượt theo dõi
+            </span>
+            <BsDot />
+            <span className="text-base-text">{data?.detail.duration}</span>
+          </div>
         </div>
       </div>
+      {/* <div
+        className="py-10 px-5 flex gap-3 items-end bg- "
+        style={{
+          backgroundColor: `${track?.color_bg}`,
+        }}
+      >
+        <div>
+          <img className="w-[226px] h-[226px]" src={track?.thumbnail} alt="" />
+        </div>
+        <div>
+          <span className="mb-2 font-bold text-white">Bài hát</span>
+          <h1 className="text-white font-bold text-5xl py-3">{track?.name}</h1>
+          <div className="text-sm my-1">
+            <span className="text-2xl font-normal">{track?.artist.name}</span>
+          </div>
+          <div className="flex items-center">
+            <img
+              className="w-10 rounded-full"
+              src={track?.artist.thumbnail}
+              alt=""
+            />
+            <span>
+              <Link
+                href={`/artist/${track?.artist.slug}`}
+                className="font-bold hover:underline "
+              >
+                {track?.artist.name}
+              </Link>
+            </span>
+            <BsDot />
+            <span className="font-medium">
+              <span className="text-white">
+                {track?.popularity}k lượt theo dõi
+              </span>
+              <span className="text-base-text"> . 3:54</span>
+            </span>
+          </div>
+        </div>
+      </div> */}
       <div className="bg-sub-background/20 p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6 text-4xl">
             <button onClick={handlePlayList}>
-              <PlayPauseMusic />
+              <PlayPauseMusic
+                isPlay={
+                  music.type === data?.detail.type &&
+                  music.isPlay &&
+                  music.id === data?.detail.id
+                    ? true
+                    : false
+                }
+              />
             </button>
             {/* <IoIosAddCircleOutline className="text-base-text hover:text-white hover:scale-105" /> */}
-            <Link
+            {/* <Link
               href={""}
               className="text-sm font-bold border border-gray-100 border-solid rounded-full w-24 p-1 text-center hover:text-white hover:scale-105"
             >
               Theo dõi
             </Link>
-            <BsThreeDots className="text-base-text hover:text-white hover:scale-105" />
+            <BsThreeDots className="text-base-text hover:text-white hover:scale-105" /> */}
           </div>
           {/* <div>
             <span className="flex items-center gap-3 text-icon-color hover:text-white">
@@ -144,7 +209,7 @@ const TrackList = () => {
             <TableRow></TableRow>
           </TableHeader>
           <TableBody>
-            {artist?.tracks.map((track, index) => (
+            {data?.tracks.map((track, index) => (
               <TableRow
                 key={track.id}
                 className="border-none hover:bg-base-text group text-base-text "
@@ -152,7 +217,7 @@ const TrackList = () => {
                 <TableCell className="font-medium p-2">
                   <div
                     className={
-                      music.play && music.track?.id === track.id
+                      music.isPlay && currentSong?.id === track.id
                         ? "hidden"
                         : "block"
                     }
@@ -165,7 +230,7 @@ const TrackList = () => {
                   </div>
                   <div
                     className={
-                      music.play && music.track?.id === track.id
+                      music.isPlay && currentSong?.id === track.id
                         ? "block"
                         : "hidden"
                     }
@@ -173,14 +238,14 @@ const TrackList = () => {
                     <img
                       width={20}
                       className={`group-hover:hidden ${
-                        music.play ? "block" : "hidden"
+                        music.isPlay ? "block" : "hidden"
                       }`}
                       src="/music-wave.svg"
                       alt=""
                     />
                     <div
                       className={`group-hover:block hidden text-lg w-4 text-white ${
-                        music.play ? "hidden" : "block"
+                        music.isPlay ? "hidden" : "block"
                       }`}
                     >
                       <button onClick={handlePauseMusic}>
@@ -207,8 +272,8 @@ const TrackList = () => {
                         </Link>
                       </div>
                       <div className="font-semibold text-[11px] group-hover:text-white hover:underline hover:text-white cursor-pointer">
-                        <Link href={`${artist.artist.slug}`}>
-                          {artist.artist.name}
+                        <Link href={`${track.artist.slug}`}>
+                          {track.artist.name}
                         </Link>
                       </div>
                     </div>

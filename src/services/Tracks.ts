@@ -1,5 +1,6 @@
 import { https } from "@/lib/configHttp";
-import { TrackType } from "@/types/track.type";
+import { TrackDetail, TrackType } from "@/types/track.type";
+import { DetailData } from "@/types/ultits.type";
 
 // Trong một trang hoặc component của bạn
 export async function getTracks(
@@ -12,7 +13,7 @@ export async function getTracks(
   return response.payload.data;
 }
 
-export async function getTracksBySlug(slug: string): Promise<TrackType> {
-  const response = await https.get<{ data: TrackType }>(`tracks/${slug}`);
-  return response.payload.data;
+export async function getTracksBySlug(slug: string): Promise<DetailData> {
+  const response = await https.get<DetailData>(`tracks/${slug}`);
+  return response.payload;
 }

@@ -9,7 +9,7 @@ export async function GET(
   const prisma = new PrismaClient();
 
   try {
-    const artists = await prisma.tracks.findFirst({
+    const result = await prisma.tracks.findFirst({
       where: {
         slug: params.slug,
       },
@@ -17,7 +17,10 @@ export async function GET(
         artist: true,
       },
     });
-    return Response.json({ data: artists });
+    const tracks = [result];
+    const data = { ...result, artist: undefined };
+
+    return Response.json({ detail: data, tracks });
   } catch (error) {
     console.log(error);
   }
