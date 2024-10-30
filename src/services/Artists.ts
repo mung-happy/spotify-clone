@@ -3,13 +3,13 @@ import { ArtistType } from "@/types/artists.type";
 import { DetailData } from "@/types/ultits.type";
 
 export async function getArtist(
-  limit: number = 6,
+  limit: number | string = "",
   type: string = ""
-): Promise<ArtistType[]> {
-  const response = await https.get<{ data: ArtistType[] }>(
+): Promise<DetailData[]> {
+  const response = await https.get<DetailData[]>(
     `artists?limit=${limit}&type=${type}`
   );
-  return response.payload.data;
+  return response.payload;
 }
 
 export async function getArtistSlug(slug: string): Promise<DetailData> {

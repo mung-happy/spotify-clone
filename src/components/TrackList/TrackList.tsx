@@ -165,7 +165,7 @@ const TrackList = ({ data }: TrackListProps) => {
       </div> */}
       <div className="bg-sub-background/20 p-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6 text-4xl">
+          <div className="flex items-center gap-6">
             <button onClick={handlePlayList}>
               <PlayPauseMusic
                 isPlay={

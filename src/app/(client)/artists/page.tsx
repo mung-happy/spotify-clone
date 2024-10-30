@@ -8,7 +8,11 @@ export default async function Pagetrack() {
   return (
     <SectionContainer title="Nghệ sĩ nổi bật" link="">
       {artists.map((artist) => (
-        <SectionItem key={artist.slug} data={artist} rounded_img={true} />
+        <SectionItem
+          key={artist.detail.slug}
+          data={artist}
+          rounded_img={true}
+        />
       ))}
     </SectionContainer>
   );

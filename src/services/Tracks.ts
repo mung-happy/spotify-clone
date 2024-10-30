@@ -6,11 +6,11 @@ import { DetailData } from "@/types/ultits.type";
 export async function getTracks(
   limit: number | string = "",
   type: string = ""
-): Promise<TrackType[]> {
-  const response = await https.get<{ data: TrackType[] }>(
+): Promise<DetailData[]> {
+  const response = await https.get<DetailData[]>(
     `tracks?limit=${limit}&type=${type}`
   );
-  return response.payload.data;
+  return response.payload;
 }
 
 export async function getTracksBySlug(slug: string): Promise<DetailData> {

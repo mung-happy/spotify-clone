@@ -6,8 +6,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const limit = req.nextUrl.searchParams.get("limit");
   const artistsHot = req.nextUrl.searchParams.get("type");
   try {
-    const artists = await prisma.artists.findMany({
-      take: parseInt(limit || "5"),
+    const result = await prisma.artists.findMany({
+      take: limit ? parseInt(limit) : undefined,
       orderBy: {
         popularity: artistsHot === "hot" ? "desc" : "asc",
       },
@@ -16,7 +16,13 @@ export async function GET(req: NextRequest, res: NextResponse) {
       },
     });
 
-    return Response.json({ data: artists });
+    const data = result.map((item) => {
+      const tracks = item?.track ?? [];
+      const detail = { ...item, track: undefined };
+      return { detail, tracks };
+    });
+
+    return Response.json(data);
   } catch (error) {
     console.log(error);
   }

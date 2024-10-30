@@ -6,8 +6,8 @@ interface PlayPauseMusicProps {
 
 export default function PlayPauseMusic({ isPlay }: PlayPauseMusicProps) {
   return (
-    <button className="p-2 bg-green-500 rounded-full text-black">
+    <div className="p-2 bg-green-500 rounded-full text-black w-full h-full flex justify-center items-center text-6xl">
       {isPlay ? <IoIosPause /> : <IoIosPlay />}
-    </button>
+    </div>
   );
 }

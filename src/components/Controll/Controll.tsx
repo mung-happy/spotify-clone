@@ -81,11 +81,11 @@ export default function Controll() {
   }, [currentTime]);
 
   const handlePlay = () => {
-    dispatch(playMusicCurrent());
-  };
-
-  const handlePause = () => {
-    dispatch(pauseMusicCurrent());
+    if (music.isPlay) {
+      dispatch(pauseMusicCurrent());
+    } else {
+      dispatch(playMusicCurrent());
+    }
   };
 
   const handleSeekStart = () => {
@@ -166,15 +166,11 @@ export default function Controll() {
               >
                 <GiPreviousButton />
               </button>
-              <button className="p-1 rounded-full mx-3 bg-white hover:scale-105 text-2xl">
-                <IoIosPlay
-                  className={music.isPlay ? "hidden" : "block"}
-                  onClick={handlePlay}
-                />
-                <IoIosPause
-                  className={music.isPlay ? "block" : "hidden"}
-                  onClick={handlePause}
-                />
+              <button
+                onClick={handlePlay}
+                className="p-1 rounded-full mx-3 bg-white hover:scale-105 text-2xl"
+              >
+                {music.isPlay ? <IoIosPause /> : <IoIosPlay />}
               </button>
               <button
                 onClick={handleNextSong}

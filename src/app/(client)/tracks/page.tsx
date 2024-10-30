@@ -8,8 +8,8 @@ export default async function Pagetrack() {
 
   return (
     <SectionContainer title="Bài hát nổi bật" link="">
-      {data.map((tracks) => (
-        <SectionItem key={tracks.slug} data={tracks} />
+      {data.map((track) => (
+        <SectionItem key={track.detail.slug} data={track} />
       ))}
     </SectionContainer>
   );
