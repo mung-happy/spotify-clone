@@ -15,6 +15,8 @@ export async function track() {
       slug: "em-cua-ngay-hom-qua",
       track_url:
         "https://ia600304.us.archive.org/26/items/em-cua-ngay-hom-qua/Em%20C%E1%BB%A7a%20Ng%C3%A0y%20H%C3%B4m%20Qua.mp3",
+      duration: "3:45",
+      play_nummber: 118548754,
       create_at: "2024-10-12 07:29:17",
       update_at: "2024-10-12 07:29:17",
     },
@@ -30,6 +32,8 @@ export async function track() {
       slug: "we-dont-talk-anymore",
       track_url:
         "https://ia600201.us.archive.org/13/items/charlie-puth-we-dont-talk-anymore-2111/Charlie%20Puth%20-%20We%20Don%27t%20Talk%20Anymore%20%28feat.%20Selena%20Gomez%29%20%5BOfficial%20Video%5D.mp3",
+      duration: "3:50",
+      play_nummber: 7388577,
       create_at: "2024-10-12 07:31:02",
       update_at: "2024-10-12 07:31:02",
     },
@@ -45,6 +49,8 @@ export async function track() {
       slug: "blank-space",
       track_url:
         "https://ia600307.us.archive.org/17/items/blank-space_202404/Taylor%20Swift%20-%20Blank%20Space.mp3",
+      duration: "4:32",
+      play_nummber: 728345,
       create_at: "2024-10-12 07:32:47",
       update_at: "2024-10-12 07:32:47",
     },
@@ -60,6 +66,8 @@ export async function track() {
       slug: "attention",
       track_url:
         "https://ia600308.us.archive.org/6/items/attention-222/Charlie%20Puth%20-%20Attention%20%5BOfficial%20Video%5D.mp3",
+      duration: "3:51",
+      play_nummber: 968849,
       create_at: "2024-10-12 07:34:32",
       update_at: "2024-10-12 07:34:32",
     },
@@ -75,6 +83,8 @@ export async function track() {
       slug: "one-call-away",
       track_url:
         "https://ia600309.us.archive.org/24/items/charlie-puth-one-call-away-233/Charlie%20Puth%20-%20One%20Call%20Away%20%5BOfficial%20Video%5D.mp3",
+      duration: "4:01",
+      play_nummber: 516364,
       create_at: "2024-10-12 07:36:17",
       update_at: "2024-10-12 07:36:17",
     },
@@ -90,6 +100,8 @@ export async function track() {
       slug: "shake-it-off",
       track_url:
         "https://ia600202.us.archive.org/32/items/shake-it-off_202404/Taylor%20Swift%20-%20Shake%20It%20Off.mp3",
+      duration: "4:01",
+      play_nummber: 183757,
       create_at: "2024-10-12 07:38:02",
       update_at: "2024-10-12 07:38:02",
     },
@@ -105,6 +117,8 @@ export async function track() {
       slug: "bad-blood",
       track_url:
         "https://ia600309.us.archive.org/16/items/bad-blood_202404/Taylor%20Swift%20-%20Bad%20Blood%20ft.%20Kendrick%20Lamar.mp3",
+      duration: "4:04",
+      play_nummber: 2546577,
       create_at: "2024-10-12 07:39:47",
       update_at: "2024-10-12 07:39:47",
     },
@@ -120,6 +134,8 @@ export async function track() {
       slug: "you-belong-with-me",
       track_url:
         "https://ia800206.us.archive.org/20/items/you-belong-with-me_202404/Taylor%20Swift%20-%20You%20Belong%20With%20Me.mp3",
+      duration: "3:48",
+      play_nummber: 82868999,
       create_at: "2024-10-12 07:41:32",
       update_at: "2024-10-12 07:41:32",
     },
@@ -135,6 +151,8 @@ export async function track() {
       slug: "celine-dion",
       track_url:
         "https://ia600207.us.archive.org/31/items/my-heart-will-go-on_2345/C%C3%A9line%20Dion%20-%20My%20Heart%20Will%20Go%20On%20%28Taking%20Chances%20World%20Tour-%20The%20Concert%29.mp3",
+      duration: "5:10",
+      play_nummber: 475829552,
       create_at: "2024-10-12 07:43:17",
       update_at: "2024-10-12 07:43:17",
     },
@@ -150,6 +168,8 @@ export async function track() {
       slug: "see-you-again",
       track_url:
         "https://ia600302.us.archive.org/18/items/see-you-again_202404/Wiz%20Khalifa%20-%20See%20You%20Again%20ft.%20Charlie%20Puth%20%5BOfficial%20Video%5D%20Furious%207%20Soundtrack.mp3",
+      duration: "3:57",
+      play_nummber: 7162467,
       create_at: "2024-10-12 07:45:02",
       update_at: "2024-10-12 07:45:02",
     },
@@ -165,6 +185,8 @@ export async function track() {
       slug: "you-raise-me-up",
       track_url:
         "https://ia600303.us.archive.org/21/items/you-raise-me-up_202404/Westlife%20-%20You%20Raise%20Me%20Up%20%28Official%20Video%29.mp3",
+      duration: "4:00",
+      play_nummber: 56738286,
       create_at: "2024-10-12 07:46:47",
       update_at: "2024-10-12 07:46:47",
     },
@@ -180,6 +202,8 @@ export async function track() {
       slug: "nothing's-gonna-change-my-love-for-you",
       track_url:
         "https://ia600200.us.archive.org/1/items/nothings-gonna-change-my-love-for-you_202404/Westlife%20-%20Nothing%27s%20Gonna%20Change%20My%20Love%20For%20You%20%28Lyrics%29.mp3",
+      duration: "3:45",
+      play_nummber: 825466,
       create_at: "2024-10-12 07:48:32",
       update_at: "2024-10-12 07:48:32",
     },
@@ -195,6 +219,8 @@ export async function track() {
       slug: "perfect",
       track_url:
         "https://ia600307.us.archive.org/23/items/perfect_202404/Ed%20Sheeran%20-%20Perfect%20%28Official%20Music%20Video%29.mp3",
+      duration: "4:39",
+      play_nummber: 6104968,
       create_at: "2024-10-12 07:50:17",
       update_at: "2024-10-12 07:50:17",
     },
@@ -210,6 +236,8 @@ export async function track() {
       slug: "khong-phai-dang-vua-da",
       track_url:
         "https://ia800304.us.archive.org/26/items/em-cua-ngay-hom-qua/Kh%C3%B4ng%20Ph%E1%BA%A3i%20D%E1%BA%A1ng%20V%E1%BB%ABa%20%C4%90%C3%A2u.mp3",
+      duration: "4:07",
+      play_nummber: 47276599,
       create_at: "2024-10-12 07:52:02",
       update_at: "2024-10-12 07:52:02",
     },
@@ -225,6 +253,8 @@ export async function track() {
       slug: "nang-am-xa-dan",
       track_url:
         "https://ia600304.us.archive.org/26/items/em-cua-ngay-hom-qua/N%E1%BA%AFng%20%E1%BA%A4m%20Xa%20D%E1%BA%A7n%20-%20S%C6%A1n%20T%C3%B9ng%20M-TP.mp3",
+      duration: "3:12",
+      play_nummber: 13586744,
       create_at: "2024-10-12 07:53:47",
       update_at: "2024-10-12 07:53:47",
     },
@@ -240,6 +270,8 @@ export async function track() {
       slug: "da-lo-yeu-em-nhieu",
       track_url:
         "https://ia800304.us.archive.org/26/items/em-cua-ngay-hom-qua/JustaTee%20-%20%C4%90%C3%A3%20L%E1%BB%A1%20Y%C3%AAu%20Em%20Nhi%E1%BB%81u%20%28Official%20MV%29.mp3",
+      duration: "4:26",
+      play_nummber: 4626464,
       create_at: "2024-10-12 07:55:32",
       update_at: "2024-10-12 07:55:32",
     },
@@ -255,6 +287,8 @@ export async function track() {
       slug: "vi-yeu-cu-dam-dau",
       track_url:
         "https://ia600302.us.archive.org/31/items/spotify-song/MIN%20x%20%C4%90EN%20V%C3%82U%20x%20JUSTATEE%20-%20V%C3%8C%20Y%C3%8AU%20C%E1%BB%A8%20%C4%90%C3%82M%20%C4%90%E1%BA%A6U%20%28VYC%C4%90%C4%90%29%20-%20OFFICIAL%20MUSIC%20VIDEO.mp3",
+      duration: "4:01",
+      play_nummber: 79285858,
       create_at: "2024-10-12 07:57:17",
       update_at: "2024-10-12 07:57:17",
     },
@@ -270,6 +304,8 @@ export async function track() {
       slug: "co-em-cho",
       track_url:
         "https://ia800302.us.archive.org/31/items/spotify-song/MIN%20-%20C%C3%B3%20Em%20Ch%E1%BB%9D%20ft.%20Mr%20A%20%28Official%20MV%29.mp3",
+      duration: "4:03",
+      play_nummber: 74666642,
       create_at: "2024-10-12 07:59:02",
       update_at: "2024-10-12 07:59:02",
     },
@@ -285,6 +321,8 @@ export async function track() {
       slug: "nen-va-hoa",
       track_url:
         "https://ia800302.us.archive.org/31/items/spotify-song/Rhymastic%20-%20N%E1%BA%BFn%20V%C3%A0%20Hoa%20%28Official%20Audio%29.mp3",
+      duration: "2:47",
+      play_nummber: 165784,
       create_at: "2024-10-12 08:00:47",
       update_at: "2024-10-12 08:00:47",
     },
@@ -300,6 +338,8 @@ export async function track() {
       slug: "yeu-5",
       track_url:
         "https://ia600302.us.archive.org/31/items/spotify-song/Y%C3%AAu%205.mp3",
+      duration: "4:00",
+      play_nummber: 7295858,
       create_at: "2024-10-12 08:02:32",
       update_at: "2024-10-12 08:02:32",
     },
@@ -315,6 +355,8 @@ export async function track() {
       slug: "nhung-loi-hua-bo-quen",
       track_url:
         "https://ia600304.us.archive.org/26/items/em-cua-ngay-hom-qua/NH%E1%BB%AENG%20L%E1%BB%9CI%20H%E1%BB%A8A%20B%E1%BB%8E%20QU%C3%8AN%20-%20V%C5%A8.%20x%20DEAR%20JANE%20%28Official%20MV%29.mp3",
+      duration: "4:18",
+      play_nummber: 82485822,
       create_at: "2024-10-12 08:04:17",
       update_at: "2024-10-12 08:04:17",
     },
@@ -330,6 +372,8 @@ export async function track() {
       slug: "sau-loi-tu-khuoc",
       track_url:
         "https://ia800304.us.archive.org/26/items/em-cua-ngay-hom-qua/Sau%20l%E1%BB%9Di%20t%E1%BB%AB%20kh%C6%B0%E1%BB%9Bc%20%28OST%20MAI%29%20-%20Phan%20M%E1%BA%A1nh%20Qu%E1%BB%B3nh%20-%20Lyrics%20video.mp3",
+      duration: "4:10",
+      play_nummber: 875928585,
       create_at: "2024-10-12 08:06:02",
       update_at: "2024-10-12 08:06:02",
     },
@@ -345,6 +389,8 @@ export async function track() {
       slug: "thang-tu-la-loi-noi-doi-cua-em",
       track_url:
         "https://ia600304.us.archive.org/26/items/em-cua-ngay-hom-qua/Th%C3%A1ng%20T%C6%B0%20L%C3%A0%20L%E1%BB%9Di%20N%E1%BB%91i%20D%E1%BB%91i%20C%E1%BB%A7a%20Em%20%5BOfficial%20Lyric%20Video%5D%20-%20H%C3%A0%20Anh%20Tu%E1%BA%A5n.mp3",
+      duration: "5:56",
+      play_nummber: 6648524,
       create_at: "2024-10-12 08:07:47",
       update_at: "2024-10-12 08:07:47",
     },
@@ -360,6 +406,8 @@ export async function track() {
       slug: "dem-ngay-xa-em",
       track_url:
         "https://ia800304.us.archive.org/26/items/em-cua-ngay-hom-qua/%C4%90%E1%BA%BFm%20Ng%C3%A0y%20Xa%20Em%20-%20Only%20C%20ft.%20Lou%20Ho%C3%A0ng%20-%20Official%20MV%20-%20Nh%E1%BA%A1c%20tr%E1%BA%BB%20m%E1%BB%9Bi%20hay%20tuy%E1%BB%83n%20ch%E1%BB%8Dn.mp3",
+      duration: "4:23",
+      play_nummber: 62847768,
       create_at: "2024-10-12 08:09:32",
       update_at: "2024-10-12 08:09:32",
     },
@@ -374,7 +422,9 @@ export async function track() {
       type: "track",
       slug: "hit-me-up",
       track_url:
-        "https://ia800302.us.archive.org/31/items/spotify-song/BINZ%20-%20HIT%20ME%20UP%20%28ft.%20NOMOVODKA%29%20-%20OFFICIAL%20MV.mp",
+        "https://ia800302.us.archive.org/31/items/spotify-song/BINZ%20-%20HIT%20ME%20UP%20%28ft.%20NOMOVODKA%29%20-%20OFFICIAL%20MV.mp3",
+      duration: "5:36",
+      play_nummber: 67253857,
       create_at: "2024-10-12 08:11:17",
       update_at: "2024-10-12 08:11:17",
     },
@@ -390,6 +440,8 @@ export async function track() {
       slug: "3107-1-2-3-4-5-6-7-8",
       track_url:
         "https://ia800302.us.archive.org/31/items/spotify-song/W-n%20-%203107%20full%20album-%20ft.%20%28%20267%2C%20N%C3%A2u%20%2CD%C6%B0%C6%A1ngg%20%29.mp3",
+      duration: "12:17",
+      play_nummber: 3526465,
       create_at: "2024-10-12 08:13:02",
       update_at: "2024-10-12 08:13:02",
     },
@@ -405,6 +457,8 @@ export async function track() {
       slug: "id-072019",
       track_url:
         "https://ia800302.us.archive.org/31/items/spotify-song/W-n%20-%20id%20072019%20-%203107%20ft%20267.mp3",
+      duration: "5:02",
+      play_nummber: 6264656,
       create_at: "2024-10-12 08:14:47",
       update_at: "2024-10-12 08:14:47",
     },
@@ -420,6 +474,8 @@ export async function track() {
       slug: "dance-monkey",
       track_url:
         "https://ia600204.us.archive.org/27/items/dance-monkey_202404/TONES%20AND%20I%20-%20DANCE%20MONKEY%20%28OFFICIAL%20VIDEO%29.mp3",
+      duration: "3:56",
+      play_nummber: 9285644,
       create_at: "2024-10-12 08:16:32",
       update_at: "2024-10-12 08:16:32",
     },

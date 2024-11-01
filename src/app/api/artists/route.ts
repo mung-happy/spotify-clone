@@ -12,7 +12,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
         popularity: artistsHot === "hot" ? "desc" : "asc",
       },
       include: {
-        track: true,
+        track: {
+          include: {
+            artist: true,
+          },
+        },
       },
     });
 

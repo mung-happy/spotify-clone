@@ -5,6 +5,8 @@ import {
   IoIosAddCircleOutline,
   IoIosRepeat,
   IoIosPause,
+  IoMdVolumeHigh,
+  IoMdVolumeLow,
 } from "react-icons/io";
 import { LiaRandomSolid } from "react-icons/lia";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
@@ -33,13 +35,14 @@ export default function Controll() {
   useEffect(() => {
     if (audioRefs.current && music.isPlay) {
       audioRefs.current.play();
+      document.title = `${currentSong.name} - ${currentSong.artist.name}`;
       return;
     }
     if (audioRefs.current && !music.isPlay) {
       audioRefs.current.pause();
       return;
     }
-  }, [music.isPlay, currentSong?.track_url]);
+  }, [music.isPlay, currentSong]);
 
   useEffect(() => {
     const audio = audioRefs.current;
@@ -135,19 +138,16 @@ export default function Controll() {
           <div className="flex items-center ml-4">
             <img
               className="rounded-t-sm shadow-2xl object-cover w-14 h-14"
-              src={currentSong?.thumbnail}
+              src={currentSong?.thumbnail || "./music-note.jpg"}
             />
             <div className="ml-4">
               <div className="text-[14px] text-white hover:underline cursor-pointer">
                 {currentSong?.name}
               </div>
               <div className="font-semibold text-[11px] text-base-text hover:underline hover:text-white cursor-pointer">
-                {currentSong?.slug}
+                {currentSong?.artist.name}
               </div>
             </div>
-          </div>
-          <div className="text-icon-color text-xl px-3">
-            <IoIosAddCircleOutline />
           </div>
         </div>
 

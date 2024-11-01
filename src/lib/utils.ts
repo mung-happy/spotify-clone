@@ -37,3 +37,7 @@ export function debounce<T extends (...args: any[]) => void>(
     }, delay);
   };
 }
+
+export function formatNumber(number: number) {
+  return number.toLocaleString("de-DE");
+}

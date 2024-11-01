@@ -1,23 +1,29 @@
-"use client";
-
 import TrackList from "@/components/TrackList/TrackList";
 import { getArtistSlug } from "@/services/Artists";
-import { DetailData } from "@/types/ultits.type";
-import { useParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { Metadata } from "next";
 
-export default function PageId() {
-  const [artist, setArtist] = useState<DetailData | null>(null);
-  const params = useParams();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  // read route params
+  const slug = (await params).slug;
 
-  const getTrack = useCallback(async () => {
-    const data = await getArtistSlug(String(params.slug));
-    setArtist(data);
-  }, [params.slug]);
+  const data = await getArtistSlug(slug);
 
-  useEffect(() => {
-    getTrack();
-  }, [getTrack]);
+  return {
+    title: `${data.detail.name} | Spotify`,
+  };
+}
+
+export default async function PageId({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug;
+  const data = await getArtistSlug(slug);
 
   return (
     <div
@@ -27,7 +33,7 @@ export default function PageId() {
         backgroundImage: `linear-gradient(to bottom,backgroundColor:'rgb(88, 80, 80)',#000000)`,
       }}
     >
-      <TrackList data={artist} />
+      <TrackList data={data} />
       {/* <div className="p-3">
         <h2 className="font-semibold p-3 text-3xl">Album</h2>
         <div className="grid grid-cols-4">

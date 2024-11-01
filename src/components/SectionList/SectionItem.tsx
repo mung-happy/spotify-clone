@@ -61,7 +61,7 @@ export default function SectionItem({ rounded_img = false, data }: Props) {
           <div className="text-white pt-4 font-semibold text-[17px] text-nowrap text-ellipsis truncate text-container w-48 overflow-hidden whitespace-nowrap">
             {data.detail.name}
           </div>
-          <div className="text-gray-400 pt-1 text-[14px]">
+          <div className="text-gray-400 pt-1 text-[14px] capitalize">
             {data.detail.type}
           </div>
           {/* <div className="text-gray-400 pt-1 pb-3 text-[14px]">

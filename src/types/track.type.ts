@@ -9,6 +9,7 @@ export interface TrackType {
   type: string;
   slug: string;
   track_url: string;
+  play_nummber: number;
   duration: string;
 }
 

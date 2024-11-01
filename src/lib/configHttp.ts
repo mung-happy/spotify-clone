@@ -1,5 +1,3 @@
-import axios from "axios";
-import { cookies } from "next/headers";
 const API = process.env.NEXT_PUBLIC_URL_SERVER;
 
 export class HttpError extends Error {
@@ -26,7 +24,7 @@ const request = async <Response>(
     method,
     next: { revalidate: 60 },
   });
-  const payload: Response = await res.json();
+  const payload = await res.json();
   const data = {
     status: res.status,
     payload,

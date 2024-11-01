@@ -11,18 +11,19 @@ datasource db {
 }
 
 model Tracks {
-  id         Int      @id @default(autoincrement())
-  artist_id  Int
-  thumbnail  String
-  name       String
-  popularity Int?
-  color_bg   String
-  type       String
-  slug       String
-  track_url  String
-  duration   String   @default("0")
-  create_at  DateTime @default(now())
-  update_at  DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  artist_id    Int
+  thumbnail    String
+  name         String
+  popularity   Int?
+  color_bg     String
+  type         String
+  slug         String
+  track_url    String
+  duration     String   @default("0")
+  play_nummber Int      @default(0)
+  create_at    DateTime @default(now())
+  update_at    DateTime @default(now())
 
   track_genre Track_Genre[]
   album_track Album_Track[]
