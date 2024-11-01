@@ -2,7 +2,7 @@ import SectionContainer from "@/components/SectionList/SectionContainer";
 import SectionItem from "@/components/SectionList/SectionItem";
 import { getArtist } from "@/services/Artists";
 
-export default async function Pagetrack() {
+export default async function PageArtist() {
   const artists = await getArtist();
 
   return (
