@@ -5,11 +5,11 @@ import { getTracks } from "@/services/Tracks";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Streamify - Trải nghiệm âm nhạc của bạn mọi lúc, mọi nơi",
+  title: "Spotify - Trải nghiệm âm nhạc của bạn mọi lúc, mọi nơi",
   description:
-    "Khám phá hàng triệu bài hát, album, và playlist trên Streamify - nền tảng phát nhạc hàng đầu. Tạo playlist yêu thích và nghe nhạc mọi lúc mọi nơi!",
+    "Khám phá hàng triệu bài hát, album, và playlist trên Spotify - nền tảng phát nhạc hàng đầu. Tạo playlist yêu thích và nghe nhạc mọi lúc mọi nơi!",
   keywords:
-    "âm nhạc, nghe nhạc, playlist, album, bài hát, trực tuyến, phát nhạc, Streamify",
+    "âm nhạc, nghe nhạc, playlist, album, bài hát, trực tuyến, phát nhạc, Spotify",
 };
 
 export default async function Home() {
