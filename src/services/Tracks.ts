@@ -10,10 +10,10 @@ export async function getTracks(
   const response = await https.get<DetailData[]>(
     `tracks?limit=${limit}&type=${type}`
   );
-  return response.payload;
+  return response.payload ?? [];
 }
 
 export async function getTracksBySlug(slug: string): Promise<DetailData> {
   const response = await https.get<DetailData>(`tracks/${slug}`);
-  return response.payload;
+  return response.payload ?? {};
 }
