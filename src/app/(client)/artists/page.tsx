@@ -3,17 +3,18 @@ import SectionItem from "@/components/SectionList/SectionItem";
 import { getArtist } from "@/services/Artists";
 
 export default async function PageArtist() {
-  const artists = await getArtist();
+  // const artists = await getArtist();
 
   return (
     <SectionContainer title="Nghệ sĩ nổi bật" link="">
-      {artists.map((artist) => (
+      {/* {artists.map((artist) => (
         <SectionItem
           key={artist.detail.slug}
           data={artist}
           rounded_img={true}
         />
-      ))}
+      ))} */}
+      <></>
     </SectionContainer>
   );
 }
