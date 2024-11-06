@@ -6,11 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Tracks {
+model tracks {
   id           Int      @id @default(autoincrement())
   artist_id    Int
   thumbnail    String
@@ -25,12 +26,10 @@ model Tracks {
   create_at    DateTime @default(now())
   update_at    DateTime @default(now())
 
-  track_genre Track_Genre[]
-  album_track Album_Track[]
-  artist      Artists       @relation(fields: [artist_id], references: [id])
+  artist artists @relation(fields: [artist_id], references: [id])
 }
 
-model Artists {
+model artists {
   id         Int      @id @default(autoincrement())
   name       String
   thumbnail  String
@@ -41,11 +40,10 @@ model Artists {
   create_at  DateTime @default(now())
   update_at  DateTime @default(now())
 
-  album Albums[]
-  track Tracks[]
+  track tracks[]
 }
 
-model Genres {
+model genres {
   id        Int      @id @default(autoincrement())
   name      String
   thumbnail String
@@ -53,39 +51,37 @@ model Genres {
   slug      String
   create_at DateTime @default(now())
   update_at DateTime @default(now())
-
-  track_genre Track_Genre[]
 }
 
-model Albums {
-  id        Int      @id @default(autoincrement())
-  artist_id Int
-  name      String
-  thumbnail String
-  color_bg  String
-  type      String
-  slug      String
-  create_at DateTime @default(now())
-  update_at DateTime @default(now())
+// model Albums {
+//   id        Int      @id @default(autoincrement())
+//   artist_id Int
+//   name      String
+//   thumbnail String
+//   color_bg  String
+//   type      String
+//   slug      String
+//   create_at DateTime @default(now())
+//   update_at DateTime @default(now())
 
-  album_track Album_Track[]
-  artist      Artists       @relation(fields: [artist_id], references: [id])
-}
+//   album_track Album_Track[]
+//   artist      Artists       @relation(fields: [artist_id], references: [id])
+// }
 
-model Track_Genre {
-  id       Int @id @default(autoincrement())
-  track_id Int
-  genre_id Int
+// model Track_Genre {
+//   id       Int @id @default(autoincrement())
+//   track_id Int
+//   genre_id Int
 
-  genre Genres @relation(fields: [genre_id], references: [id])
-  track Tracks @relation(fields: [track_id], references: [id])
-}
+//   genre Genres @relation(fields: [genre_id], references: [id])
+//   track Tracks @relation(fields: [track_id], references: [id])
+// }
 
-model Album_Track {
-  id       Int @id @default(autoincrement())
-  track_id Int
-  album_id Int
+// model Album_Track {
+//   id       Int @id @default(autoincrement())
+//   track_id Int
+//   album_id Int
 
-  album Albums @relation(fields: [album_id], references: [id])
-  track Tracks @relation(fields: [track_id], references: [id])
-}
+//   album Albums @relation(fields: [album_id], references: [id])
+//   track Tracks @relation(fields: [track_id], references: [id])
+// }
