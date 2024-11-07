@@ -1,4 +1,4 @@
-const API = process.env.NEXT_PUBLIC_URL_SERVER;
+const API = "https://spotify-clone-sk8n.vercel.app/api/";
 
 export class HttpError extends Error {
   status: number;

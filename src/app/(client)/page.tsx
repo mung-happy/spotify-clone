@@ -13,27 +13,25 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // const artists = await getArtist(6);
-  // const tracks = await getTracks(6);
+  const artists = await getArtist(6);
+  const tracks = await getTracks(6);
 
   return (
     <>
       <div className="bg-gradient-to-b from-[#353535] via-base-background to-base-background">
         <SectionContainer title="Nghệ sĩ nổi bật" link="/artists">
-          <></>
-          {/* {artists.map((artist) => (
+          {artists.map((artist) => (
             <SectionItem
               key={artist.detail.slug}
               data={artist}
               rounded_img={true}
             />
-          ))} */}
+          ))}
         </SectionContainer>
         <SectionContainer title="Bài hát nổi bật" link="/tracks">
-          <></>
-          {/* {tracks.map((tracks) => (
+          {tracks.map((tracks) => (
             <SectionItem key={tracks.detail.slug} data={tracks} />
-          ))} */}
+          ))}
         </SectionContainer>
         {/* <SectionContainer title="Album nổi bật" link="/track">
         {albums.payload.map((album) => (
