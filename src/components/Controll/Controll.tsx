@@ -1,24 +1,19 @@
 "use client";
 
-import {
-  IoIosPlay,
-  IoIosAddCircleOutline,
-  IoIosRepeat,
-  IoIosPause,
-  IoMdVolumeHigh,
-  IoMdVolumeLow,
-} from "react-icons/io";
+import { IoIosPlay, IoIosPause } from "react-icons/io";
+import { PiRepeatFill, PiRepeatOnceFill } from "react-icons/pi";
 import { LiaRandomSolid } from "react-icons/lia";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   nextSong,
   pauseMusicCurrent,
   playMusicCurrent,
   previousSong,
   shufflerSong,
+  toggleRepeat,
 } from "@/redux/playMusic/slice";
 import { formatTime } from "@/lib/utils";
 
@@ -30,7 +25,7 @@ export default function Controll() {
   const audioRefs = useRef<HTMLAudioElement | null>(null);
   const dispatch = useDispatch();
 
-  const currentSong = music.tracks[music.currentSongIndex];
+  const currentSong = music.shuffledPlaylist[music.currentSongIndex];
 
   useEffect(() => {
     if (audioRefs.current && music.isPlay) {
@@ -52,36 +47,42 @@ export default function Controll() {
       }
     };
     const handleTimeUpdate = () => {
-      if (audio) {
+      if (audio && !isDragging) {
         setCurrentTime(audio.currentTime);
       }
     };
 
-    // Gán sự kiện
     if (audio) {
       audio.addEventListener("loadedmetadata", handleLoadedMetadata);
       audio.addEventListener("timeupdate", handleTimeUpdate);
     }
 
-    // Xóa sự kiện khi component bị hủy
     return () => {
       if (audio) {
         audio.addEventListener("loadedmetadata", handleLoadedMetadata);
         audio.removeEventListener("timeupdate", handleTimeUpdate);
       }
     };
-  }, []);
+  }, [isDragging]);
 
   useEffect(() => {
-    if (currentTime === duration && music.tracks.length > 1) {
+    if (!duration || currentTime !== duration) return;
+
+    if (music.repeatMode === "one" && audioRefs.current) {
+      audioRefs.current.play();
+      return;
+    }
+
+    if (
+      music.shuffledPlaylist.length > 1 &&
+      (music.currentSongIndex < music.shuffledPlaylist.length - 1 ||
+        music.repeatMode === "all")
+    ) {
       dispatch(nextSong());
-      return;
-    }
-    if (currentTime === duration) {
+    } else {
       dispatch(pauseMusicCurrent());
-      return;
     }
-  }, [currentTime]);
+  }, [duration, currentTime]);
 
   const handlePlay = () => {
     if (music.isPlay) {
@@ -100,12 +101,12 @@ export default function Controll() {
     setCurrentTime(time);
   };
 
-  const handleSeekEnd = useCallback(() => {
-    if (isDragging && audioRefs.current) {
+  const handleSeekEnd = () => {
+    if (audioRefs.current) {
       audioRefs.current.currentTime = currentTime;
-      setIsDragging(false);
     }
-  }, [currentTime, isDragging]);
+    setIsDragging(false);
+  };
 
   const handleNextSong = () => {
     dispatch(nextSong());
@@ -114,12 +115,16 @@ export default function Controll() {
     dispatch(previousSong());
   };
 
-  // const handleShuffler = () => {
-  //   dispatch(shufflerSong());
-  // };
+  const handleShuffler = () => {
+    dispatch(shufflerSong());
+  };
+
+  const handleRepeat = () => {
+    dispatch(toggleRepeat());
+  };
 
   return (
-    <div className="col-span-full absolute bottom-0 left-0 right-0">
+    <div className="col-span-full absolute bottom-0 left-0 right-0 z-50">
       <audio ref={audioRefs} src={currentSong?.track_url}></audio>
       <div
         id="MusicPlayer"
@@ -154,33 +159,59 @@ export default function Controll() {
         <div className="max-w-[35%] mx-auto w-2/4">
           <div className="flex-col items-center justify-center">
             <div className="buttons flex items-center justify-center h-[30px]">
-              {/* <button
-                className="mx-2 text-icon-color hover:text-white text-xl"
+              <button
+                className={`mx-2 ${
+                  music.shufflerMode ? "text-green-500" : "text-icon-color"
+                } text-xl ${
+                  music.shuffledPlaylist.length > 1 &&
+                  !music.shufflerMode &&
+                  "hover:text-white"
+                }`}
                 onClick={handleShuffler}
+                disabled={!currentSong || music.shuffledPlaylist.length == 1}
               >
                 <LiaRandomSolid />
-              </button> */}
+              </button>
               <button
                 onClick={handlePreviousSong}
-                className="mx-2 text-icon-color hover:text-white text-xl"
+                className={`mx-2 text-icon-color text-xl ${
+                  music.shuffledPlaylist.length > 1 && "hover:text-white"
+                }`}
+                disabled={!currentSong || music.shuffledPlaylist.length == 1}
               >
                 <GiPreviousButton />
               </button>
               <button
                 onClick={handlePlay}
-                className="p-1 rounded-full mx-3 bg-white hover:scale-105 text-2xl"
+                className={`p-1 rounded-full mx-3 bg-white ${
+                  currentSong && "hover:scale-105"
+                } text-2xl`}
+                disabled={!currentSong}
               >
                 {music.isPlay ? <IoIosPause /> : <IoIosPlay />}
               </button>
               <button
                 onClick={handleNextSong}
-                className="mx-2 text-icon-color hover:text-white text-xl"
+                className={`mx-2 text-icon-color text-xl ${
+                  music.shuffledPlaylist.length > 1 && "hover:text-white"
+                }`}
+                disabled={!currentSong || music.shuffledPlaylist.length == 1}
               >
                 <GiNextButton />
               </button>
-              {/* <button className="mx-2 text-icon-color hover:text-white text-2xl">
-                <IoIosRepeat />
-              </button> */}
+              <button
+                onClick={handleRepeat}
+                className={`mx-2 text-xl ${
+                  music.repeatMode === "none" &&
+                  "hover:text-white text-icon-color "
+                } ${music.repeatMode !== "none" && "text-green-500"}`}
+              >
+                {music.repeatMode === "one" ? (
+                  <PiRepeatOnceFill />
+                ) : (
+                  <PiRepeatFill />
+                )}
+              </button>
             </div>
 
             <div className="flex items-center h-[25px]">
@@ -190,21 +221,17 @@ export default function Controll() {
               >
                 {formatTime(currentTime)}
               </div>
-              <div className="w-full relative mt-2 mb-3">
+              <div className="w-full relative mb-3">
                 <input
                   onChange={handleSeeking}
                   type="range"
                   value={currentTime}
                   min={0}
                   max={duration}
-                  className="absolute rounded-full my-2 w-full h-1 z-40 focus:outline-none"
+                  className="absolute rounded-full my-2 w-full h-2 z-40 focus:outline-none"
                   onMouseDown={handleSeekStart}
                   onMouseUp={handleSeekEnd}
-                  onTouchStart={handleSeekStart}
-                  onTouchEnd={handleSeekEnd}
                 />
-                {/* <div className="pointer-events-none mt-[6px] absolute h-[4px] z-10 inset-y-0 left-0 w-0 bg-green-500 bg-white" /> */}
-                {/* <div className="absolute h-[4px] z-[-0] mt-[6px] inset-y-0 left-0 w-full bg-gray-500 rounded-full" /> */}
               </div>
               <div
                 v-if="isTrackTimeTotal"

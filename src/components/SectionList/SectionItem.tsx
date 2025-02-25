@@ -47,13 +47,13 @@ export default function SectionItem({ rounded_img = false, data }: Props) {
       <Link href={`/${data.detail.type}s/${data.detail.slug}`}>
         <div
           key={data.detail.slug}
-          className="mt-3 hover:bg-[#252525] cursor-pointer w-max p-2 rounded-lg"
+          className="mt-3 hover:bg-[#252525] cursor-pointer p-2 rounded-lg"
         >
           <div>
             <img
               className={`${
                 rounded_img ? "rounded-full" : "rounded-md"
-              } w-[200px] h-[200px] object-cover`}
+              } w-[150px] aspect-square object-cover`}
               src={data.detail.thumbnail}
               alt=""
             />
@@ -70,7 +70,7 @@ export default function SectionItem({ rounded_img = false, data }: Props) {
         </div>
       </Link>
       <div
-        className={`absolute z-50 right-12 ${
+        className={`absolute z-10 right-3 ${
           music.type === data?.detail.type &&
           music.isPlay &&
           music.id === data?.detail.id

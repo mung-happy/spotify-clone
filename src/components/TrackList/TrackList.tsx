@@ -22,7 +22,6 @@ import {
   playMusicCurrent,
 } from "@/redux/playMusic/slice";
 import { RootState } from "@/redux/store";
-import { TrackType } from "@/types/track.type";
 import { DetailData } from "@/types/ultits.type";
 import { formatNumber, isArtistType } from "@/lib/utils";
 
@@ -34,7 +33,7 @@ const TrackList = ({ data }: TrackListProps) => {
   const music = useSelector((state: RootState) => state.playMusic);
   const dispatch = useDispatch();
 
-  const currentSong = music.tracks[music.currentSongIndex];
+  const currentSong = music.shuffledPlaylist[music.currentSongIndex];
 
   const handlePlayList = () => {
     if (music.isPlay && music.id === data?.detail.id) {
@@ -56,12 +55,13 @@ const TrackList = ({ data }: TrackListProps) => {
     dispatch(playMusicCurrent());
   };
 
-  const handlePlayMusic = (track: TrackType) => {
+  const handlePlayMusic = (indexSong: number) => {
     dispatch(
       playMusic({
         id: data?.detail.id,
         type: data?.detail.type,
-        tracks: [track],
+        tracks: data?.tracks,
+        currentSongIndex: indexSong,
       })
     );
   };
@@ -165,7 +165,7 @@ const TrackList = ({ data }: TrackListProps) => {
                     }
                   >
                     <div className="group-hover:block text-white">
-                      <button onClick={() => handlePlayMusic(track)}>
+                      <button onClick={() => handlePlayMusic(index)}>
                         <IoPlaySharp />
                       </button>
                     </div>
@@ -198,7 +198,7 @@ const TrackList = ({ data }: TrackListProps) => {
                 </TableCell>
                 <TableCell className="px-4">
                   <div className="flex items-center">
-                    <Link href={`/track/${track.slug}`}>
+                    <Link href={`/track/${track?.slug}`}>
                       <img
                         className="rounded-sm shadow-2xl object-cover flex w-10 h-10"
                         src={track.thumbnail}

@@ -21,7 +21,7 @@ const cards = [
 
 export default function Sidebar() {
   return (
-    <nav id="SideNav" className="basis-[340px] flex flex-col shrink-0">
+    <nav id="SideNav" className="basis-[200px] flex flex-col shrink-0">
       <div className="p-3 bg-base-background rounded-lg">
         <Image
           alt=""

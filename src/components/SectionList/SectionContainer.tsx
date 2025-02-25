@@ -16,7 +16,7 @@ const SectionContainer = ({ title, link, children }: Props) => {
           Hiện tất cả
         </Link>
       </div>
-      <div className="px-3 grid grid-cols-6">{children}</div>
+      <div className="px-3 grid grid-cols-6 gap-5">{children}</div>
     </div>
   );
 };
