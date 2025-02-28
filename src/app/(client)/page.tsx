@@ -2,6 +2,7 @@ import SectionContainer from "@/components/SectionList/SectionContainer";
 import SectionItem from "@/components/SectionList/SectionItem";
 import { getArtist } from "@/services/Artists";
 import { getTracks } from "@/services/Tracks";
+import { DetailData } from "@/types/ultits.type";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,9 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const artists = await getArtist(6);
-  const tracks = await getTracks(6);
+  // const artists = await getArtist(6);
+  // const tracks = await getTracks(6);
 
+  const artists: DetailData[] = [];
+  const tracks: DetailData[] = [];
   return (
     <>
       <div className="bg-gradient-to-b from-[#353535] via-base-background to-base-background">
