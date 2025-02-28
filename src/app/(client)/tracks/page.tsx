@@ -5,8 +5,7 @@ import SectionContainer from "@/components/SectionList/SectionContainer";
 import { DetailData } from "@/types/ultits.type";
 
 export default async function Pagetrack() {
-  // const data = await getTracks();
-  const data: DetailData[] = [];
+  const data = await getTracks();
 
   return (
     <SectionContainer title="Bài hát nổi bật" link="">

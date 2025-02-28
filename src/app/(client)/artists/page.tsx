@@ -4,8 +4,7 @@ import { getArtist } from "@/services/Artists";
 import { DetailData } from "@/types/ultits.type";
 
 export default async function PageArtist() {
-  // const artists = await getArtist();
-  const artists: DetailData[] = [];
+  const artists = await getArtist();
   return (
     <SectionContainer title="Nghệ sĩ nổi bật" link="">
       {artists.map((artist) => (

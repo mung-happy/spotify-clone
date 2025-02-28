@@ -14,11 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // const artists = await getArtist(6);
-  // const tracks = await getTracks(6);
+  const artists = await getArtist(6);
+  const tracks = await getTracks(6);
 
-  const artists: DetailData[] = [];
-  const tracks: DetailData[] = [];
   return (
     <>
       <div className="bg-gradient-to-b from-[#353535] via-base-background to-base-background">
